@@ -1,5 +1,5 @@
 ---
-title: "Week1"
+title: "Machine Learning Stanford Course Notes"
 author: "Fikir Worku Edossa"
 date: "6/21/2020"
 output: html_document
