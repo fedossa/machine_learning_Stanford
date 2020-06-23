@@ -1,5 +1,5 @@
 ---
-title: "Machine Learning Stanford Course Notes"
+title: "Machine Learning Notes - Andrew Ng(Stanford Uni)"
 author: "Fikir Worku Edossa"
 date: "6/21/2020"
 output: html_document
@@ -239,12 +239,44 @@ $\theta_1:=\theta_1-\alpha * 0$
 
 ![](Gradien_Descent_Intution_graph_3.png)
 
+## Gradient Descent for Linear Regression
 
 
+When specifically applied to the case of linear regression, a new form of the gradient descent equation can be derived. We can substitute our actual cost function and our actual hypothesis function and modify the equation to :
+
+$\begin{align*} \text{repeat until convergence: } \lbrace & \newline \theta_0 := & \theta_0 - \alpha \frac{1}{m} \sum\limits_{i=1}^{m}(h_\theta(x_{i}) - y_{i}) \newline \theta_1 := & \theta_1 - \alpha \frac{1}{m} \sum\limits_{i=1}^{m}\left((h_\theta(x_{i}) - y_{i}) x_{i}\right) \newline \rbrace& \end{align*}$
+
+where m is the size of the training set, $\theta_0$ a constant that will be changing simultaneously with $\theta_1$ and $x_{i}, y_{i}$ are values of the given training set (data).
+
+Note that we have separated out the two cases for $\theta_j$ into separate equations for $\theta_0$ and $\theta_1$; and that for $\theta_1$ we are multiplying $x_{i}$ at the end due to the derivative.
+
+The following is a derivation of $\frac {\partial}{\partial \theta_j}J(\theta)$ for a single example :
+
+![<span style="color:red">This would be a derivation of the loss function with respect to $\beta$ for regression through the origin with one predictor</span>](Gradient_descent_for_linear_regression_graph_1.png)
+
+The point of all this is that if we start with a guess for our hypothesis and then repeatedly apply these gradient descent equations, our hypothesis will become more and more accurate.
+
+So, this is simply gradient descent on the original cost function J. This method looks at every example in the entire training set on every step, and is called **batch gradient descent**. Note that, while gradient descent can be susceptible to local minima in general, the optimization problem we have posed here for linear regression has only one global, and no other local, optima; thus gradient descent always converges (assuming the learning rate α is not too large) to the global minimum. Indeed, J is a convex quadratic function. Here is an example of gradient descent as it is run to minimize a quadratic function.
+
+![](Gradient_descent_for_linear_regression_graph_2.png)
+
+The ellipses shown above are the contours of a quadratic function. Also shown is the trajectory taken by gradient descent, which was initialized at (48,30). The x’s in the figure (joined by straight lines) mark the successive values of θ that gradient descent went through as it converged to its minimum.
 
 
+#### Additonal self note
+
+<span style="color:red">
+Actually, if you replace* $\\h_\theta (x_i)$ with $\theta_0 + \theta_1*X_i$*, in the cost function then you can derive the partial derivative yourself and you will get the same results. Plus the multivariate gradient descent should come as a normal extension of what is done here. Essentially, you are holding all explanatory variables constant then mapping the slope of one explanatory variable or the intercept against the cost function. Finding the slop and adjusting the value depending on this slope and  also doing all this simultaneously of course.
+</span>
 
 
+$J(\theta_0, \theta_1) = \dfrac {1}{2m} \displaystyle \sum _{i=1}^m \left ( \hat{y}_{i}- y_{i} \right)^2 = \dfrac {1}{2m} \displaystyle \sum _{i=1}^m \left (h_\theta (x_{i}) - y_{i} \right)^2$
+
+$J(\theta_0, \theta_1) = \dfrac {1}{2m} \displaystyle \sum _{i=1}^m \left (h_\theta (x_{i}) - y_{i} \right)^2$
+
+$J(\theta_0, \theta_1) = \dfrac {1}{2m} \displaystyle \sum _{i=1}^m \left ((\theta_0 + \theta_1*X_i) - y_{i} \right)^2$
+
+<span style="color:red">i.e partial derivative of the last equation with respect to $\theta_0$ and $\theta_1$.</span>
 
 
 
