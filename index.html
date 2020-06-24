@@ -663,6 +663,191 @@ add_As = A + s
 ##    3   4   6
 ##    7   5   4</code></pre>
 </div>
+<div id="matrix-vector-multiplication" class="section level2">
+<h2>Matrix-Vector Multiplication</h2>
+<p>We map the column of the vector onto each row of the matrix, multiplying each element and summing the result.</p>
+<p><span class="math inline">\(\begin{bmatrix} a &amp; b \newline c &amp; d \newline e &amp; f \end{bmatrix} *\begin{bmatrix} x \newline y \newline \end{bmatrix} =\begin{bmatrix} a*x + b*y \newline c*x + d*y \newline e*x + f*y\end{bmatrix}\)</span></p>
+<p>The result is a <strong>vector</strong>. The number of <strong>columns</strong> of the matrix must equal the number of <strong>rows</strong> of the vector.</p>
+<p>An <strong>m x n matrix</strong> multiplied by an <strong>n x 1</strong> vector results in an <strong>m x 1 vector</strong>.</p>
+<p>Below is an example of a matrix-vector multiplication. Make sure you understand how the multiplication works. Feel free to try different matrix-vector multiplications.</p>
+<pre class="octave"><code>
+% Initialize matrix A 
+A = [1, 2, 3; 4, 5, 6;7, 8, 9] 
+
+% Initialize vector v 
+v = [1; 1; 1] 
+
+% Multiply A * v
+Av = A * v
+</code></pre>
+<pre><code>## A =
+## 
+##    1   2   3
+##    4   5   6
+##    7   8   9
+## 
+## v =
+## 
+##    1
+##    1
+##    1
+## 
+## Av =
+## 
+##     6
+##    15
+##    24</code></pre>
+</div>
+<div id="matrix-matrix-multiplication" class="section level2">
+<h2>Matrix-Matrix Multiplication</h2>
+<p>We multiply two matrices by breaking it into several vector multiplications and concatenating the result.</p>
+<p><span class="math inline">\(\begin{bmatrix} a &amp; b \newline c &amp; d \newline e &amp; f \end{bmatrix} *\begin{bmatrix} w &amp; x \newline y &amp; z \newline \end{bmatrix} =\begin{bmatrix} a*w + b*y &amp; a*x + b*z \newline c*w + d*y &amp; c*x + d*z \newline e*w + f*y &amp; e*x + f*z\end{bmatrix}\)</span></p>
+<p>An <strong>m x n matrix</strong> multiplied by an <strong>n x o matrix</strong> results in an <strong>m x o</strong> matrix. In the above example, a 3 x 2 matrix times a 2 x 2 matrix resulted in a 3 x 2 matrix.</p>
+<p>To multiply two matrices, the number of <strong>columns</strong> of the first matrix must equal the number of <strong>rows</strong> of the second matrix.</p>
+<p>For example:</p>
+<pre class="octave"><code>
+% Initialize a 3 by 2 matrix 
+A = [1, 2; 3, 4;5, 6]
+
+% Initialize a 2 by 1 matrix 
+B = [1; 2] 
+
+% We expect a resulting matrix of (3 by 2)*(2 by 1) = (3 by 1) 
+mult_AB = A*B
+
+% Make sure you understand why we got that result
+</code></pre>
+<pre><code>## A =
+## 
+##    1   2
+##    3   4
+##    5   6
+## 
+## B =
+## 
+##    1
+##    2
+## 
+## mult_AB =
+## 
+##     5
+##    11
+##    17</code></pre>
+</div>
+<div id="matrix-multiplication-properties" class="section level2">
+<h2>Matrix Multiplication Properties</h2>
+<ul>
+<li>Matrices are not commutative: <span class="math inline">\(A∗B \neq B∗A\)</span></li>
+<li>Matrices are associative: <span class="math inline">\((A∗B)∗C = A∗(B∗C)\)</span></li>
+</ul>
+<p>The <strong>identity matrix</strong>, when multiplied by any matrix of the same dimensions, results in the original matrix. It’s just like multiplying numbers by 1. The identity matrix simply has 1’s on the diagonal (upper left to lower right diagonal) and 0’s elsewhere.</p>
+<p><span class="math inline">\(\begin{bmatrix} 1 &amp; 0 &amp; 0 \newline 0 &amp; 1 &amp; 0 \newline 0 &amp; 0 &amp; 1 \newline \end{bmatrix}\)</span></p>
+<p>When multiplying the identity matrix after some matrix (A∗I), the square identity matrix’s dimension should match the other matrix’s <strong>columns</strong>. When multiplying the identity matrix before some other matrix (I∗A), the square identity matrix’s dimension should match the other matrix’s <strong>rows</strong>.</p>
+<pre class="octave"><code>% Initialize random matrices A and B 
+A = [1,2;4,5]
+B = [1,1;0,2]
+
+% Initialize a 2 by 2 identity matrix
+I = eye(2)
+
+% The above notation is the same as I = [1,0;0,1]
+
+% What happens when we multiply I*A ? 
+IA = I*A 
+
+% How about A*I ? 
+AI = A*I 
+
+% Compute A*B 
+AB = A*B 
+
+% Is it equal to B*A? 
+BA = B*A 
+
+% Note that IA = AI but AB != BA
+</code></pre>
+<pre><code>## A =
+## 
+##    1   2
+##    4   5
+## 
+## B =
+## 
+##    1   1
+##    0   2
+## 
+## I =
+## 
+## Diagonal Matrix
+## 
+##    1   0
+##    0   1
+## 
+## IA =
+## 
+##    1   2
+##    4   5
+## 
+## AI =
+## 
+##    1   2
+##    4   5
+## 
+## AB =
+## 
+##     1    5
+##     4   14
+## 
+## BA =
+## 
+##     5    7
+##     8   10</code></pre>
+</div>
+<div id="inverse-and-transpose" class="section level2">
+<h2>Inverse and Transpose</h2>
+<p>The <strong>inverse</strong> of a matrix A is denoted <span class="math inline">\(A^{-1}\)</span>. Multiplying by the inverse results in the identity matrix.</p>
+<p>A non square matrix does not have an inverse matrix. We can compute inverses of matrices in octave with the <span class="math inline">\(pinv(A)\)</span> function and in Matlab with the <span class="math inline">\(inv(A)\)</span> function. Matrices that don’t have an inverse are <strong>singular</strong> or <strong>degenerate</strong>.</p>
+<p>The <strong>transposition</strong> of a matrix is like rotating the matrix 90° in clockwise direction and then reversing it. We can compute transposition of matrices in matlab with the transpose(A) function or A’:</p>
+<p><span class="math inline">\(A = \begin{bmatrix} a &amp; b \newline c &amp; d \newline e &amp; f \end{bmatrix}\)</span></p>
+<p><span class="math inline">\(A^T = \begin{bmatrix} a &amp; c &amp; e \newline b &amp; d &amp; f \newline \end{bmatrix}\)</span></p>
+<p>In other words:</p>
+<p><span class="math inline">\(A_{ij} = A^T_{ji}\)</span></p>
+<pre class="octave"><code>% Initialize matrix A 
+A = [1,2,0;0,5,6;7,0,9]
+
+% Transpose A 
+A_trans = A&#39; 
+
+% Take the inverse of A 
+A_inv = inv(A)
+
+% What is A^(-1)*A? 
+A_invA = inv(A)*A
+</code></pre>
+<pre><code>## A =
+## 
+##    1   2   0
+##    0   5   6
+##    7   0   9
+## 
+## A_trans =
+## 
+##    1   0   7
+##    2   5   0
+##    0   6   9
+## 
+## A_inv =
+## 
+##    0.348837  -0.139535   0.093023
+##    0.325581   0.069767  -0.046512
+##   -0.271318   0.108527   0.038760
+## 
+## A_invA =
+## 
+##    1.0000e+00  -8.3267e-17   5.5511e-17
+##    2.7756e-17   1.0000e+00  -8.3267e-17
+##   -3.4694e-17   2.7756e-17   1.0000e+00</code></pre>
+</div>
 </div>
 
 
