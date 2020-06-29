@@ -821,9 +821,9 @@ A_trans = A&#39;
 % Take the inverse of A 
 A_inv = inv(A)
 
+
 % What is A^(-1)*A? 
-A_invA = inv(A)*A
-</code></pre>
+A_invA = inv(A)*A</code></pre>
 <pre><code>## A =
 ## 
 ##    1   2   0
@@ -847,6 +847,19 @@ A_invA = inv(A)*A
 ##    1.0000e+00  -8.3267e-17   5.5511e-17
 ##    2.7756e-17   1.0000e+00  -8.3267e-17
 ##   -3.4694e-17   2.7756e-17   1.0000e+00</code></pre>
+</div>
+<div id="multiple-features" class="section level2">
+<h2>Multiple features</h2>
+<p>Linear regression with multiple variables is also known as “multivariate linear regression”.</p>
+<p>We now introduce notation for equations where we can have any number of input variables.</p>
+<p><span class="math inline">\(\begin{align*}x_j^{(i)} &amp;= \text{value of feature } j \text{ in the }i^{th}\text{ training example} \newline x^{(i)}&amp; = \text{the input (features) of the }i^{th}\text{ training example} \newline m &amp;= \text{the number of training examples} \newline n &amp;= \text{the number of features} \end{align*}\)</span></p>
+<p>The multivariable form of the hypothesis function accommodating these multiple features is as follows:</p>
+<p><span class="math inline">\(h_\theta (x) = \theta_0 + \theta_1 x_1 + \theta_2 x_2 + \theta_3 x_3 + \cdots + \theta_n x_n\)</span></p>
+<p>In order to develop intuition about this function, we can think about <span class="math inline">\(\theta_0\)</span> as the basic price of a house, <span class="math inline">\(\theta_1\)</span> as the price per square meter, <span class="math inline">\(\theta_2\)</span> as the price per floor, etc. <span class="math inline">\(x_1\)</span> will be the number of square meters in the house, <span class="math inline">\(x_2\)</span> the number of floors, etc.</p>
+<p>Using the definition of matrix multiplication, our multivariable hypothesis function can be concisely represented as:</p>
+<p><span class="math inline">\(\begin{align*}h_\theta(x) =\begin{bmatrix}\theta_0 \hspace{2em} \theta_1 \hspace{2em} ... \hspace{2em} \theta_n\end{bmatrix}\begin{bmatrix}x_0 \newline x_1 \newline \vdots \newline x_n\end{bmatrix}= \theta^T x\end{align*}\)</span></p>
+<p>This is a vectorization of our hypothesis function for one training example; see the lessons on vectorization to learn more.</p>
+<p>Remark: Note that for convenience reasons in this course we assume <span class="math inline">\(x_{0}^{(i)} =1 \text{ for } (i\in { 1,\dots, m } )\)</span>. This allows us to do matrix operations with theta and x. Hence making the two vectors <span class="math inline">\(&#39;\theta&#39;\)</span> and <span class="math inline">\(x^{(i)}\)</span> match each other element-wise (that is, have the same number of elements: n+1).</p>
 </div>
 </div>
 
