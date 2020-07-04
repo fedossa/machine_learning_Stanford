@@ -689,6 +689,154 @@ Solutions to the above problems include deleting a feature that is linearly depe
 ** In the econometrics discussion the problem of linearly dependnet explanatory variables make it hard to make a decision as to which of the two variables is having the observed effect on the outcome variable. i.e multicollinearity 
 
 
+## Octave - Basic Operations
+
+
+```{octave, engine.path = octaveExe}
+
+% percent sign is the comment key for octave
+
+5 + 6 % elementery operations can be done with -, *, /, ^
+```
+
+```{octave, engine.path = octaveExe}
+1 == 2 % logical operations - evalues to false - it is reprensted with 0
+```
+
+```{octave, engine.path = octaveExe}
+1 ~= 2 % The not equal to sign is thelta equal symble and not bang equal
+```
+
+```{octave, engine.path = octaveExe}
+1 && 0 % The AND logical operator - evaluates to 0
+```
+
+```{octave, engine.path = octaveExe}
+1 || 0 % The OR logicla operator - evalueses to 0
+```
+
+```{octave, engine.path = octaveExe}
+PS1('>> ') % To change the octave symbole to >>
+```
+
+```{octave, engine.path = octaveExe}
+ans = 3; % Assignment is done with = and the ; supress prints out. 
+```
+
+```{octave, engine.path = octaveExe}
+c = (3 >= 1);
+```
+
+```{octave, engine.path = octaveExe}
+% printing out results
+
+b = 'hi'; 
+b % just to print out b
+```
+
+```{octave, engine.path = octaveExe}
+% for a more complex printing use disp - for display. 
+
+a = pi; 
+
+disp(sprintf('2 decimals: %0.2f', a)) % syntax used to print strings. It will print out a with two decimals. the %0.2f is to say substitute a here and provide two decimal points. If you change 2 to 6 then you will get 6 decimal place. 
+```
+
+
+```{octave, engine.path = octaveExe}
+a = pi; 
+format long % sets the defualt print to high decimal palces
+a 
+
+format short % lower decial place print output
+a
+```
+
+```{octave, engine.path = octaveExe}
+% Matrix
+
+A = [1 2; 3 4; 5 6] % ; says go to the next line. You can write them on different lines if you want. 
+
+```
+
+```{octave, engine.path = octaveExe}
+% Vectors
+
+v = [1 2 3] % row vector
+
+v = [1; 2; 3] % column vector
+```
+
+```{octave, engine.path = octaveExe}
+% Another way to create vectors
+
+v = 1:0.1:2 % Start from 1 and increment by 0.1 until you arrive at 2. If you do not pass increment default would be 1
+```
+
+```{octave, engine.path = octaveExe}
+% Other ways to generate matrix
+
+ones(2, 3) % arguement row and column specification - generates matrix of 1s 
+
+% can be done for zeros as well. With the ones you can actually create any matrix by multiplying with scalar.
+
+5 * ones(2, 3)
+```
+
+```{octave, engine.path = octaveExe}
+% random variable matrix
+
+rand(3,3) % matrix of random variables drawn from 0 to 1 with row and column specification.
+```
+
+```{octave, engine.path = octaveExe}
+% more complex generation.
+
+w = -6 + sqrt(10)*(randn(1, 10000));
+
+hist(w, 50) % second arguement sets the bins for the historgram
+```
+
+```{octave, engine.path = octaveExe}
+% identitiy matrix
+
+eye (3)
+```
+
+```{octave, engine.path = octaveExe}
+% documentation and help with help - does not work on rstudio markdown knitting but works in octave.
+
+%help rand
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
