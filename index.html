@@ -1080,9 +1080,9 @@ ones(2, 3) % arguement row and column specification - generates matrix of 1s
 rand(3,3) % matrix of random variables drawn from 0 to 1 with row and column specification.</code></pre>
 <pre><code>## ans =
 ## 
-##    0.051703   0.989582   0.559183
-##    0.951674   0.113751   0.384770
-##    0.261566   0.713585   0.475754</code></pre>
+##    0.0098977   0.0938825   0.1544253
+##    0.5913739   0.7927987   0.1471060
+##    0.7206743   0.0279722   0.0220328</code></pre>
 <pre class="octave"><code>% more complex generation.
 
 w = -6 + sqrt(10)*(randn(1, 10000));
@@ -1099,8 +1099,70 @@ eye (3)</code></pre>
 ##    0   1   0
 ##    0   0   1</code></pre>
 <pre class="octave"><code>% documentation and help with help - does not work on rstudio markdown knitting but works in octave.
+%help rand </code></pre>
+</div>
+<div id="moving-data-around" class="section level2">
+<h2>Moving Data Around</h2>
+<pre class="octave"><code>% size command returns the dimension of a matrix
 
-%help rand</code></pre>
+A = [1 2; 3 4; 5 6]
+
+size(A)</code></pre>
+<pre><code>## A =
+## 
+##    1   2
+##    3   4
+##    5   6
+## 
+## ans =
+## 
+##    3   2</code></pre>
+<pre class="octave"><code>% length command returns the length of a vector - can be applied to matrix then returns the longer dimension. But stick to vector for length and size for matrix. 
+
+V = [1 2 3 4]
+length(V)
+
+A = [1 2; 3 4; 5 6]
+length(A)</code></pre>
+<pre><code>## V =
+## 
+##    1   2   3   4
+## 
+## ans =  4
+## A =
+## 
+##    1   2
+##    3   4
+##    5   6
+## 
+## ans =  3</code></pre>
+<pre class="octave"><code>% Load and find data - current working directory is pwd
+%pwd
+
+% cd stands for chage directory
+%cd &#39;C:\Users?Charlie\Desktop&#39;
+%pwd
+
+% ls lists the directories in the working direcotry 
+%ls</code></pre>
+<pre class="octave"><code>% you load data with load
+
+%load featuresX.dat
+
+% the who command tells you what variables you have in octave while whos gives you more detail.
+
+%who 
+%whos
+
+% clear is a command to use to get rid of an object - clear featureX and check with whos
+% clear with no arguments clears everything</code></pre>
+<pre class="octave"><code>A = [1 2 3 4]
+% You save with save - hello.dat A
+save hello.dat A
+load hello.dat</code></pre>
+<pre><code>## A =
+## 
+##    1   2   3   4</code></pre>
 </div>
 </div>
 

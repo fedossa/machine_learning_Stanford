@@ -805,20 +805,63 @@ eye (3)
 
 ```{octave, engine.path = octaveExe}
 % documentation and help with help - does not work on rstudio markdown knitting but works in octave.
-
-%help rand
+%help rand 
 ```
 
 
+## Moving Data Around
+
+```{octave, engine.path = octaveExe}
+% size command returns the dimension of a matrix
+
+A = [1 2; 3 4; 5 6]
+
+size(A)
+```
+
+```{octave, engine.path = octaveExe}
+% length command returns the length of a vector - can be applied to matrix then returns the longer dimension. But stick to vector for length and size for matrix. 
+
+V = [1 2 3 4]
+length(V)
+
+A = [1 2; 3 4; 5 6]
+length(A)
+```
+
+```{octave, engine.path = octaveExe}
+% Load and find data - current working directory is pwd
+%pwd
+
+% cd stands for chage directory
+%cd 'C:\Users?Charlie\Desktop'
+%pwd
+
+% ls lists the directories in the working direcotry 
+%ls
+```
 
 
+```{octave, engine.path = octaveExe}
+% you load data with load
 
+%load featuresX.dat
 
+% the who command tells you what variables you have in octave while whos gives you more detail.
 
+%who 
+%whos
 
+% clear is a command to use to get rid of an object - clear featureX and check with whos
+% clear with no arguments clears everything
+```
 
-
-
+```{octave, engine.path = octaveExe}
+A = [1 2 3 4]
+% You save with save - hello.dat A
+save hello.dat A
+load hello.dat
+```
 
 
 
