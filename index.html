@@ -413,6 +413,8 @@ summary {
 <li><a href="#matrix-matrix-multiplication">Matrix-Matrix Multiplication</a></li>
 <li><a href="#matrix-multiplication-properties">Matrix Multiplication Properties</a></li>
 <li><a href="#inverse-and-transpose">Inverse and Transpose</a></li>
+</ul></li>
+<li><a href="#week-2">Week 2</a><ul>
 <li><a href="#multiple-features">Multiple features</a></li>
 <li><a href="#gradient-descent-for-multiple-variables">Gradient Descent for Multiple Variables</a></li>
 <li><a href="#gradient-descent-in-practice-i---feature-scaling">Gradient Descent in Practice I - Feature Scaling</a></li>
@@ -424,6 +426,8 @@ summary {
 <li><a href="#normal-equation-non-invertibility">Normal Equation Non-invertibility</a></li>
 <li><a href="#octave---basic-operations">Octave - Basic Operations</a></li>
 <li><a href="#moving-data-around">Moving Data Around</a></li>
+</ul></li>
+<li><a href="#week-3">Week 3</a><ul>
 <li><a href="#classification">Classification</a></li>
 <li><a href="#logistic-regression---hpothesis-representation">Logistic regression - Hpothesis Representation</a></li>
 <li><a href="#decision-boundary">Decision Boundary</a></li>
@@ -917,6 +921,9 @@ A_invA = inv(A)*A</code></pre>
 ##    2.7756e-17   1.0000e+00  -8.3267e-17
 ##   -3.4694e-17   2.7756e-17   1.0000e+00</code></pre>
 </div>
+</div>
+<div id="week-2" class="section level1">
+<h1>Week 2</h1>
 <div id="multiple-features" class="section level2">
 <h2>Multiple features</h2>
 <p>Linear regression with multiple variables is also known as “multivariate linear regression”.</p>
@@ -1149,9 +1156,9 @@ ones(2, 3) % arguement row and column specification - generates matrix of 1s
 rand(3,3) % matrix of random variables drawn from 0 to 1 with row and column specification.</code></pre>
 <pre><code>## ans =
 ## 
-##    0.79719   0.37683   0.94851
-##    0.78099   0.87285   0.29590
-##    0.75321   0.32679   0.72660</code></pre>
+##    0.851271   0.466066   0.320029
+##    0.129275   0.740244   0.733210
+##    0.411970   0.040339   0.305237</code></pre>
 <pre class="octave"><code>% more complex generation.
 
 w = -6 + sqrt(10)*(randn(1, 10000));
@@ -1234,6 +1241,9 @@ length(A)</code></pre>
 ##    1   2   3   4</code></pre>
 <p><strong>Some Practical lessons in octave missing and in the exercise file. Figure a way to include them back into this markdown eventually.</strong></p>
 </div>
+</div>
+<div id="week-3" class="section level1">
+<h1>Week 3</h1>
 <div id="classification" class="section level2">
 <h2>Classification</h2>
 <p>To attempt classification, one method is to use linear regression and map all predictions greater than 0.5 as a 1 and all less than 0.5 as a 0. However, this method doesn’t work well because classification is not actually a linear function.</p>

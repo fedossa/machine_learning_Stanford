@@ -509,7 +509,7 @@ A_inv = inv(A)
 A_invA = inv(A)*A
 ```
 
-
+# Week 2
 ## Multiple features
 
 Linear regression with multiple variables is also known as "multivariate linear regression".
@@ -868,6 +868,7 @@ A = [1 2 3 4]
 
 **Some Practical lessons in octave missing and in the exercise file. Figure a way to include them back into this markdown eventually.**
 
+# Week 3
 ## Classification
 
 To attempt classification, one method is to use linear regression and map all predictions greater than 0.5 as a 1 and all less than 0.5 as a 0. However, this method doesn't work well because classification is not actually a linear function.
