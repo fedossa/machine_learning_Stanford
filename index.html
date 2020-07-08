@@ -426,6 +426,8 @@ summary {
 <li><a href="#moving-data-around">Moving Data Around</a></li>
 <li><a href="#classification">Classification</a></li>
 <li><a href="#logistic-regression---hpothesis-representation">Logistic regression - Hpothesis Representation</a></li>
+<li><a href="#decision-boundary">Decision Boundary</a></li>
+<li><a href="#section"></a></li>
 </ul></li>
 </ul>
 </div>
@@ -1141,9 +1143,9 @@ ones(2, 3) % arguement row and column specification - generates matrix of 1s
 rand(3,3) % matrix of random variables drawn from 0 to 1 with row and column specification.</code></pre>
 <pre><code>## ans =
 ## 
-##    0.75498   0.58287   0.37854
-##    0.95849   0.70819   0.83320
-##    0.50305   0.88852   0.11085</code></pre>
+##    0.815826   0.563472   0.401854
+##    0.529780   0.173835   0.050258
+##    0.249119   0.361604   0.435749</code></pre>
 <pre class="octave"><code>% more complex generation.
 
 w = -6 + sqrt(10)*(randn(1, 10000));
@@ -1241,6 +1243,27 @@ length(A)</code></pre>
 <p>The function g(z), shown here, maps any real number to the (0, 1) interval, making it useful for transforming an arbitrary-valued function into a function better suited for classification.</p>
 <p><span class="math inline">\(h_\theta(x)\)</span> will give us the probability that our output is 1. For example, <span class="math inline">\(h_\theta(x)=0.7\)</span> gives us a probability of 70% that our output is 1. Our probability that our prediction is 0 is just the complement of our probability that it is 1 (e.g. if probability that it is 1 is 70%, then the probability that it is 0 is 30%).</p>
 <p><span class="math inline">\(\begin{align*}&amp; h_\theta(x) = P(y=1 | x ; \theta) = 1 - P(y=0 | x ; \theta) \newline&amp; P(y = 0 | x;\theta) + P(y = 1 | x ; \theta) = 1\end{align*}\)</span></p>
+</div>
+<div id="decision-boundary" class="section level2">
+<h2>Decision Boundary</h2>
+<p>In order to get our discrete 0 or 1 classification, we can translate the output of the hypothesis function as follows:</p>
+<p><span class="math inline">\(\begin{align*}&amp; h_\theta(x) \geq 0.5 \rightarrow y = 1 \newline&amp; h_\theta(x) &lt; 0.5 \rightarrow y = 0 \newline\end{align*}\)</span></p>
+<p>The way our logistic function g behaves is that when its input is greater than or equal to zero, its output is greater than or equal to 0.5:</p>
+<p><span class="math inline">\(\begin{align*}&amp; g(z) \geq 0.5 \newline&amp; when \; z \geq 0\end{align*}\)</span></p>
+<p>Remember.</p>
+<p><span class="math inline">\(\begin{align*}z=0, e^{0}=1 \Rightarrow g(z)=1/2\newline z \to \infty, e^{-\infty} \to 0 \Rightarrow g(z)=1 \newline z \to -\infty, e^{\infty}\to \infty \Rightarrow g(z)=0 \end{align*}\)</span></p>
+<p>So if our input to g is <span class="math inline">\(\theta^T X\)</span>, then that means:</p>
+<p><span class="math inline">\(\begin{align*}&amp; h_\theta(x) = g(\theta^T x) \geq 0.5 \newline&amp; when \; \theta^T x \geq 0\end{align*}\)</span></p>
+<p>From these statements we can now say:</p>
+<p><span class="math inline">\(\begin{align*}&amp; \theta^T x \geq 0 \Rightarrow y = 1 \newline&amp; \theta^T x &lt; 0 \Rightarrow y = 0 \newline\end{align*}\)</span></p>
+<p>The <strong>decision boundary</strong> is the line that separates the area where y = 0 and where y = 1. It is created by our hypothesis function.</p>
+<p>Example:</p>
+<p><span class="math inline">\(\begin{align*}&amp; \theta = \begin{bmatrix}5 \newline -1 \newline 0\end{bmatrix} \newline &amp; y = 1 \; if \; 5 + (-1) x_1 + 0 x_2 \geq 0 \newline &amp; 5 - x_1 \geq 0 \newline &amp; - x_1 \geq -5 \newline&amp; x_1 \leq 5 \newline \end{align*}\)</span></p>
+<p>In this case, our decision boundary is a straight vertical line placed on the graph where <span class="math inline">\(x_1 = 5\)</span>, and everything to the left of that denotes y = 1, while everything to the right denotes y = 0.</p>
+<p>Again, the input to the sigmoid function g(z) (e.g. <span class="math inline">\(\theta^T X\)</span>) doesn’t need to be linear, and could be a function that describes a circle (e.g. <span class="math inline">\(z = \theta_0 + \theta_1 x_1^2 +\theta_2 x_2^2\)</span>) or any shape to fit our data.</p>
+</div>
+<div id="section" class="section level2">
+<h2></h2>
 </div>
 </div>
 
