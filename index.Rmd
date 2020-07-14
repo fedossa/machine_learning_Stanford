@@ -2,10 +2,12 @@
 title: "Machine Learning Notes - Andrew Ng(Stanford Uni)"
 author: "Fikir Worku Edossa"
 date: "6/21/2020"
-output: 
-        html_document:
-                theme: spacelab
-                toc: yes
+output:
+  pdf_document:
+    toc: yes
+  html_document:
+    theme: spacelab
+    toc: yes
 ---
 
 ```{r setup, include=FALSE}
