@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>10 ML - Programming Exercise 3 | Machine Learning Notes - Andrew Ng</title>
+  <meta name="description" content="Study material for ML - Stanford University" />
+  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="10 ML - Programming Exercise 3 | Machine Learning Notes - Andrew Ng" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="Study material for ML - Stanford University" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="10 ML - Programming Exercise 3 | Machine Learning Notes - Andrew Ng" />
+  
+  <meta name="twitter:description" content="Study material for ML - Stanford University" />
+  
+
+<meta name="author" content="Fikir Worku Edossa" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="regularized-logistic-regression.html"/>
+
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+
+
+<style type="text/css">
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Week 1</a><ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#what-is-machine-learning"><i class="fa fa-check"></i><b>1.1</b> What is Machine Learning?</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#supervised-learning"><i class="fa fa-check"></i><b>1.2</b> Supervised Learning</a><ul>
+<li class="chapter" data-level="1.2.1" data-path="index.html"><a href="index.html#supervised-learning-note"><i class="fa fa-check"></i><b>1.2.1</b> Supervised Learning (note)</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#unsupervised-learning"><i class="fa fa-check"></i><b>1.3</b> Unsupervised Learning</a></li>
+<li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#model-representation"><i class="fa fa-check"></i><b>1.4</b> Model Representation</a></li>
+<li class="chapter" data-level="1.5" data-path="index.html"><a href="index.html#cost-function"><i class="fa fa-check"></i><b>1.5</b> Cost Function</a></li>
+<li class="chapter" data-level="1.6" data-path="index.html"><a href="index.html#cost-function---intution-i"><i class="fa fa-check"></i><b>1.6</b> Cost Function - Intution I</a></li>
+<li class="chapter" data-level="1.7" data-path="index.html"><a href="index.html#cost-function---intution-ii"><i class="fa fa-check"></i><b>1.7</b> Cost Function - Intution II</a></li>
+<li class="chapter" data-level="1.8" data-path="index.html"><a href="index.html#gradient-descent"><i class="fa fa-check"></i><b>1.8</b> Gradient Descent</a></li>
+<li class="chapter" data-level="1.9" data-path="index.html"><a href="index.html#gradient-descent-intution"><i class="fa fa-check"></i><b>1.9</b> Gradient Descent Intution</a></li>
+<li class="chapter" data-level="1.10" data-path="index.html"><a href="index.html#gradient-descent-for-linear-regression"><i class="fa fa-check"></i><b>1.10</b> Gradient Descent for Linear Regression</a></li>
+<li class="chapter" data-level="1.11" data-path="index.html"><a href="index.html#matrices-and-vectors"><i class="fa fa-check"></i><b>1.11</b> Matrices and Vectors</a></li>
+<li class="chapter" data-level="1.12" data-path="index.html"><a href="index.html#addition-and-scalar-multiplication"><i class="fa fa-check"></i><b>1.12</b> Addition and Scalar Multiplication</a></li>
+<li class="chapter" data-level="1.13" data-path="index.html"><a href="index.html#matrix-vector-multiplication"><i class="fa fa-check"></i><b>1.13</b> Matrix-Vector Multiplication</a></li>
+<li class="chapter" data-level="1.14" data-path="index.html"><a href="index.html#matrix-matrix-multiplication"><i class="fa fa-check"></i><b>1.14</b> Matrix-Matrix Multiplication</a></li>
+<li class="chapter" data-level="1.15" data-path="index.html"><a href="index.html#matrix-multiplication-properties"><i class="fa fa-check"></i><b>1.15</b> Matrix Multiplication Properties</a></li>
+<li class="chapter" data-level="1.16" data-path="index.html"><a href="index.html#inverse-and-transpose"><i class="fa fa-check"></i><b>1.16</b> Inverse and Transpose</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="week-2.html"><a href="week-2.html"><i class="fa fa-check"></i><b>2</b> Week 2</a><ul>
+<li class="chapter" data-level="2.1" data-path="week-2.html"><a href="week-2.html#multiple-features"><i class="fa fa-check"></i><b>2.1</b> Multiple features</a></li>
+<li class="chapter" data-level="2.2" data-path="week-2.html"><a href="week-2.html#gradient-descent-for-multiple-variables"><i class="fa fa-check"></i><b>2.2</b> Gradient Descent for Multiple Variables</a></li>
+<li class="chapter" data-level="2.3" data-path="week-2.html"><a href="week-2.html#gradient-descent-in-practice-i---feature-scaling"><i class="fa fa-check"></i><b>2.3</b> Gradient Descent in Practice I - Feature Scaling</a></li>
+<li class="chapter" data-level="2.4" data-path="week-2.html"><a href="week-2.html#gradient-descent-in-practice-ii---learning-rate"><i class="fa fa-check"></i><b>2.4</b> Gradient Descent in Practice II - Learning Rate</a></li>
+<li class="chapter" data-level="2.5" data-path="week-2.html"><a href="week-2.html#features-and-polynomial-regression"><i class="fa fa-check"></i><b>2.5</b> Features and Polynomial Regression</a><ul>
+<li class="chapter" data-level="2.5.1" data-path="week-2.html"><a href="week-2.html#polynomial-regression"><i class="fa fa-check"></i><b>2.5.1</b> Polynomial Regression</a></li>
+</ul></li>
+<li class="chapter" data-level="2.6" data-path="week-2.html"><a href="week-2.html#normal-equation"><i class="fa fa-check"></i><b>2.6</b> Normal Equation</a></li>
+<li class="chapter" data-level="2.7" data-path="week-2.html"><a href="week-2.html#normal-equation-non-invertibility"><i class="fa fa-check"></i><b>2.7</b> Normal Equation Non-invertibility</a></li>
+<li class="chapter" data-level="2.8" data-path="week-2.html"><a href="week-2.html#octave---basic-operations"><i class="fa fa-check"></i><b>2.8</b> Octave - Basic Operations</a></li>
+<li class="chapter" data-level="2.9" data-path="week-2.html"><a href="week-2.html#moving-data-around"><i class="fa fa-check"></i><b>2.9</b> Moving Data Around</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="week-3.html"><a href="week-3.html"><i class="fa fa-check"></i><b>3</b> Week 3</a><ul>
+<li class="chapter" data-level="3.1" data-path="week-3.html"><a href="week-3.html#classification"><i class="fa fa-check"></i><b>3.1</b> Classification</a></li>
+<li class="chapter" data-level="3.2" data-path="week-3.html"><a href="week-3.html#logistic-regression---hpothesis-representation"><i class="fa fa-check"></i><b>3.2</b> Logistic regression - Hpothesis Representation</a></li>
+<li class="chapter" data-level="3.3" data-path="week-3.html"><a href="week-3.html#decision-boundary"><i class="fa fa-check"></i><b>3.3</b> Decision Boundary</a></li>
+<li class="chapter" data-level="3.4" data-path="week-3.html"><a href="week-3.html#logistic-regression---cost-function"><i class="fa fa-check"></i><b>3.4</b> Logistic Regression - Cost Function</a></li>
+<li class="chapter" data-level="3.5" data-path="week-3.html"><a href="week-3.html#simplified-cost-functin-and-gradient-descent---logreg"><i class="fa fa-check"></i><b>3.5</b> Simplified Cost Functin and Gradient Descent - LogReg</a><ul>
+<li class="chapter" data-level="3.5.1" data-path="index.html"><a href="index.html#gradient-descent"><i class="fa fa-check"></i><b>3.5.1</b> Gradient Descent</a></li>
+<li class="chapter" data-level="3.5.2" data-path="week-3.html"><a href="week-3.html#partial-derivative-of-jθ"><i class="fa fa-check"></i><b>3.5.2</b> Partial derivative of J(θ)</a></li>
+</ul></li>
+<li class="chapter" data-level="3.6" data-path="week-3.html"><a href="week-3.html#advanced-optimization"><i class="fa fa-check"></i><b>3.6</b> Advanced Optimization</a></li>
+<li class="chapter" data-level="3.7" data-path="week-3.html"><a href="week-3.html#multiclass-classification-one-vs-all"><i class="fa fa-check"></i><b>3.7</b> Multiclass Classification: One-vs-all</a></li>
+<li class="chapter" data-level="3.8" data-path="week-3.html"><a href="week-3.html#the-problem-of-overfitting"><i class="fa fa-check"></i><b>3.8</b> The Problem of Overfitting</a></li>
+<li class="chapter" data-level="3.9" data-path="week-3.html"><a href="week-3.html#regularization-cost-function"><i class="fa fa-check"></i><b>3.9</b> Regularization Cost Function</a></li>
+<li class="chapter" data-level="3.10" data-path="week-3.html"><a href="week-3.html#regularized-linear-regression"><i class="fa fa-check"></i><b>3.10</b> Regularized Linear Regression</a><ul>
+<li class="chapter" data-level="3.10.1" data-path="week-3.html"><a href="week-3.html#gradient-descent-1"><i class="fa fa-check"></i><b>3.10.1</b> Gradient Descent</a></li>
+<li class="chapter" data-level="3.10.2" data-path="week-2.html"><a href="week-2.html#normal-equation"><i class="fa fa-check"></i><b>3.10.2</b> Normal Equation</a></li>
+</ul></li>
+<li class="chapter" data-level="3.11" data-path="week-3.html"><a href="week-3.html#regularized-logistic-regression"><i class="fa fa-check"></i><b>3.11</b> Regularized Logistic Regression</a><ul>
+<li class="chapter" data-level="3.11.1" data-path="index.html"><a href="index.html#cost-function"><i class="fa fa-check"></i><b>3.11.1</b> Cost Function</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="week-4.html"><a href="week-4.html"><i class="fa fa-check"></i><b>4</b> Week 4</a><ul>
+<li class="chapter" data-level="4.1" data-path="week-4.html"><a href="week-4.html#model-representation-i"><i class="fa fa-check"></i><b>4.1</b> Model Representation I</a></li>
+<li class="chapter" data-level="4.2" data-path="week-4.html"><a href="week-4.html#model-representation-ii"><i class="fa fa-check"></i><b>4.2</b> Model Representation II</a><ul>
+<li class="chapter" data-level="4.2.1" data-path="week-4.html"><a href="week-4.html#examples-and-intuitions-i"><i class="fa fa-check"></i><b>4.2.1</b> Examples and Intuitions I</a></li>
+<li class="chapter" data-level="4.2.2" data-path="week-4.html"><a href="week-4.html#examples-and-intuitions-ii"><i class="fa fa-check"></i><b>4.2.2</b> Examples and Intuitions II</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="week-4.html"><a href="week-4.html#multiclass-classification"><i class="fa fa-check"></i><b>4.3</b> Multiclass Classification</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="week-5.html"><a href="week-5.html"><i class="fa fa-check"></i><b>5</b> Week 5</a><ul>
+<li class="chapter" data-level="5.1" data-path="week-5.html"><a href="week-5.html#cost-function-and-backpropagation---neural-networks"><i class="fa fa-check"></i><b>5.1</b> Cost Function and Backpropagation - Neural Networks</a><ul>
+<li class="chapter" data-level="5.1.1" data-path="index.html"><a href="index.html#cost-function"><i class="fa fa-check"></i><b>5.1.1</b> Cost Function</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="week-5.html"><a href="week-5.html#backpropagation-algorithm"><i class="fa fa-check"></i><b>5.2</b> Backpropagation Algorithm</a><ul>
+<li class="chapter" data-level="5.2.1" data-path="week-5.html"><a href="week-5.html#back-propagation-algorithm"><i class="fa fa-check"></i><b>5.2.1</b> Back propagation Algorithm</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="week-5.html"><a href="week-5.html#backpropagation-intuition"><i class="fa fa-check"></i><b>5.3</b> Backpropagation Intuition</a></li>
+<li class="chapter" data-level="5.4" data-path="week-5.html"><a href="week-5.html#implementation-note-unrolling-parameters"><i class="fa fa-check"></i><b>5.4</b> Implementation Note: Unrolling Parameters</a></li>
+<li class="chapter" data-level="5.5" data-path="week-5.html"><a href="week-5.html#gradient-checking"><i class="fa fa-check"></i><b>5.5</b> Gradient Checking</a></li>
+<li class="chapter" data-level="5.6" data-path="week-5.html"><a href="week-5.html#random-initialization"><i class="fa fa-check"></i><b>5.6</b> Random Initialization</a></li>
+<li class="chapter" data-level="5.7" data-path="week-5.html"><a href="week-5.html#putting-it-together"><i class="fa fa-check"></i><b>5.7</b> Putting it Together</a><ul>
+<li class="chapter" data-level="5.7.1" data-path="week-5.html"><a href="week-5.html#training-a-neural-network"><i class="fa fa-check"></i><b>5.7.1</b> Training a Neural Network</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="chapter" data-level="6" data-path="charlie-chapter.html"><a href="charlie-chapter.html"><i class="fa fa-check"></i><b>6</b> Charlie Chapter</a><ul>
+<li class="chapter" data-level="6.1" data-path="charlie-chapter.html"><a href="charlie-chapter.html#including-plots"><i class="fa fa-check"></i><b>6.1</b> Including Plots</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="what-happens-here.html"><a href="what-happens-here.html"><i class="fa fa-check"></i><b>7</b> What happens here?</a></li>
+<li class="chapter" data-level="8" data-path="ml-ex-2-r-implementationa-logistic-regression.html"><a href="ml-ex-2-r-implementationa-logistic-regression.html"><i class="fa fa-check"></i><b>8</b> 1 ML Ex 2 R implementationa: Logistic Regression</a><ul>
+<li class="chapter" data-level="8.1" data-path="ml-ex-2-r-implementationa-logistic-regression.html"><a href="ml-ex-2-r-implementationa-logistic-regression.html#introduction"><i class="fa fa-check"></i><b>8.1</b> 1.1 Introduction</a><ul>
+<li class="chapter" data-level="8.1.1" data-path="ml-ex-2-r-implementationa-logistic-regression.html"><a href="ml-ex-2-r-implementationa-logistic-regression.html#data-prep"><i class="fa fa-check"></i><b>8.1.1</b> Data Prep</a></li>
+<li class="chapter" data-level="8.1.2" data-path="ml-ex-2-r-implementationa-logistic-regression.html"><a href="ml-ex-2-r-implementationa-logistic-regression.html#visualizing-the-data"><i class="fa fa-check"></i><b>8.1.2</b> Visualizing the data</a></li>
+<li class="chapter" data-level="8.1.3" data-path="ml-ex-2-r-implementationa-logistic-regression.html"><a href="ml-ex-2-r-implementationa-logistic-regression.html#warmup-exercise-sigmoid-function"><i class="fa fa-check"></i><b>8.1.3</b> Warmup exercise: sigmoid function</a></li>
+</ul></li>
+<li class="chapter" data-level="8.2" data-path="ml-ex-2-r-implementationa-logistic-regression.html"><a href="ml-ex-2-r-implementationa-logistic-regression.html#cost-function-and-gradient"><i class="fa fa-check"></i><b>8.2</b> 1.2 Cost function and gradient</a></li>
+<li class="chapter" data-level="8.3" data-path="ml-ex-2-r-implementationa-logistic-regression.html"><a href="ml-ex-2-r-implementationa-logistic-regression.html#learning-parameters-using-fminunc"><i class="fa fa-check"></i><b>8.3</b> 1.3 Learning parameters using fminunc</a></li>
+<li class="chapter" data-level="8.4" data-path="ml-ex-2-r-implementationa-logistic-regression.html"><a href="ml-ex-2-r-implementationa-logistic-regression.html#plot-the-decision-boundary"><i class="fa fa-check"></i><b>8.4</b> 1.4 Plot the decision boundary</a></li>
+<li class="chapter" data-level="8.5" data-path="ml-ex-2-r-implementationa-logistic-regression.html"><a href="ml-ex-2-r-implementationa-logistic-regression.html#evaluating-logistic-regression"><i class="fa fa-check"></i><b>8.5</b> 1.5 Evaluating logistic regression</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="week-3.html"><a href="week-3.html#regularized-logistic-regression"><i class="fa fa-check"></i><b>9</b> 2 Regularized logistic regression</a><ul>
+<li class="chapter" data-level="9.1" data-path="regularized-logistic-regression.html"><a href="regularized-logistic-regression.html"><i class="fa fa-check"></i><b>9.1</b> 2.1 Visualizing the data</a></li>
+<li class="chapter" data-level="9.2" data-path="regularized-logistic-regression.html"><a href="regularized-logistic-regression.html#feature-mapping"><i class="fa fa-check"></i><b>9.2</b> 2.2 Feature mapping</a></li>
+<li class="chapter" data-level="9.3" data-path="regularized-logistic-regression.html"><a href="regularized-logistic-regression.html#cost-function-and-gradient-1"><i class="fa fa-check"></i><b>9.3</b> 2.3 Cost function and gradient</a></li>
+<li class="chapter" data-level="9.4" data-path="regularized-logistic-regression.html"><a href="regularized-logistic-regression.html#learning-parameters-using-fminunc-1"><i class="fa fa-check"></i><b>9.4</b> 2.4 Learning parameters using fminunc</a></li>
+<li class="chapter" data-level="9.5" data-path="regularized-logistic-regression.html"><a href="regularized-logistic-regression.html#plotting-the-decision-boundary"><i class="fa fa-check"></i><b>9.5</b> 2.5 Plotting the decision boundary</a></li>
+<li class="chapter" data-level="9.6" data-path="regularized-logistic-regression.html"><a href="regularized-logistic-regression.html#varying-lambda-levels"><i class="fa fa-check"></i><b>9.6</b> 2.4 Varying lambda levels</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="ml-programming-exercise-3.html"><a href="ml-programming-exercise-3.html"><i class="fa fa-check"></i><b>10</b> ML - Programming Exercise 3</a><ul>
+<li class="chapter" data-level="10.1" data-path="ml-programming-exercise-3.html"><a href="ml-programming-exercise-3.html#introduction-multi-class-classification"><i class="fa fa-check"></i><b>10.1</b> Introduction: Multi-class Classification</a><ul>
+<li class="chapter" data-level="10.1.1" data-path="ml-programming-exercise-3.html"><a href="ml-programming-exercise-3.html#dataset"><i class="fa fa-check"></i><b>10.1.1</b> 1.1 Dataset</a></li>
+<li class="chapter" data-level="10.1.2" data-path="ml-ex-2-r-implementationa-logistic-regression.html"><a href="ml-ex-2-r-implementationa-logistic-regression.html#visualizing-the-data"><i class="fa fa-check"></i><b>10.1.2</b> 1.2 Visualizing the data</a></li>
+</ul></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Machine Learning Notes - Andrew Ng</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="ml---programming-exercise-3" class="section level1">
+<h1><span class="header-section-number">10</span> ML - Programming Exercise 3</h1>
+<div id="introduction-multi-class-classification" class="section level2">
+<h2><span class="header-section-number">10.1</span> Introduction: Multi-class Classification</h2>
+<p>In this exercise, you will implement one-vs-all logistic regression and neural networks to recognize hand-written digits. You will use logistic regression and neural networks to recognize handwritten digits (from 0 to 9). Automated handwritten digit recognition is widely used today - from recognizing zip codes (postal codes) on mail envelopes to recognizing amounts written on bank checks. This exercise will show you how the methods you’ve learned can be used for this classification task.</p>
+<p>In the first part of the exercise, you will extend your previous implementation of logistic regression and apply it to one-vs-all classification.</p>
+<div id="dataset" class="section level3">
+<h3><span class="header-section-number">10.1.1</span> 1.1 Dataset</h3>
+<p>You are given a data set in ex3data1.mat that contains 5000 training examples of handwritten digits.2 The .mat format means that that the data has been saved in a native Octave/MATLAB matrix format, instead of a text (ASCII) format like a csv-file.</p>
+<p>After loading, matrices of the correct dimensions and values will appear in your program’s memory. The matrix will already be named, so you do not need to assign names to them.</p>
+<div class="sourceCode" id="cb101"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb101-1"><a href="ml-programming-exercise-3.html#cb101-1"></a>data &lt;-<span class="st"> </span>rmatio<span class="op">::</span><span class="kw">read.mat</span>(<span class="st">&#39;machine-learning-ex3/ex3/ex3data1.mat&#39;</span>)</span>
+<span id="cb101-2"><a href="ml-programming-exercise-3.html#cb101-2"></a>X &lt;-<span class="st"> </span>data<span class="op">$</span>X</span>
+<span id="cb101-3"><a href="ml-programming-exercise-3.html#cb101-3"></a>y &lt;-<span class="st"> </span>data<span class="op">$</span>y</span>
+<span id="cb101-4"><a href="ml-programming-exercise-3.html#cb101-4"></a><span class="kw">unique</span>(y)</span></code></pre></div>
+<pre><code>##  [1] 10  1  2  3  4  5  6  7  8  9</code></pre>
+<p>There are 5000 training examples in ex3data1.mat, where each training example is a 20 pixel by 20 pixel grayscale image of the digit. Each pixel is represented by a floating point number indicating the grayscale intensity at that location. The 20 by 20 grid of pixels is “unrolled” into a 400-dimensional vector. Each of these training examples becomes a single row in our data matrix X. This gives us a 5000 by 400 matrix X where every row is a training example for a handwritten digit image.</p>
+<p><span class="math display">\[\begin{align} \begin{bmatrix} - (x^{(1)})^{T} - \newline - (x^{(2)})^{T} -  \newline . \newline . \newline . \newline - (x^{(m)})^{T} -  \end{bmatrix} \end{align}\]</span></p>
+<p>The second part of the training set is a 5000-dimensional vector y that contains labels for the training set. To make things more compatible with Octave/MATLAB indexing, where there is no zero index, we have mapped the digit zero to the value ten. Therefore, a “0” digit is labeled as “10”, while the digits “1” to “9” are labeled as “1” to “9” in their natural order.</p>
+</div>
+<div id="visualizing-the-data" class="section level3">
+<h3><span class="header-section-number">10.1.2</span> 1.2 Visualizing the data</h3>
+<p>You will begin by visualizing a subset of the training set. In Part 1 of ex3.m, the code randomly selects selects 100 rows from X and passes those rows to the displayData function. This function maps each row to a 20 pixel by 20 pixel grayscale image and displays the images together. We have provided the displayData function, and you are encouraged to examine the code to see how it works. After you run this step, you should see an image like Figure 1.</p>
+<div class="sourceCode" id="cb103"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb103-1"><a href="ml-programming-exercise-3.html#cb103-1"></a>displayData &lt;-<span class="st"> </span><span class="cf">function</span>(X, <span class="dt">example_width=</span><span class="ot">NULL</span>){</span>
+<span id="cb103-2"><a href="ml-programming-exercise-3.html#cb103-2"></a></span>
+<span id="cb103-3"><a href="ml-programming-exercise-3.html#cb103-3"></a>        <span class="cf">if</span> (<span class="kw">is.null</span>(example_width)) {</span>
+<span id="cb103-4"><a href="ml-programming-exercise-3.html#cb103-4"></a>                example_width &lt;-<span class="st"> </span><span class="kw">round</span>(<span class="kw">sqrt</span>(<span class="kw">dim</span>(X)[<span class="dv">2</span>]))</span>
+<span id="cb103-5"><a href="ml-programming-exercise-3.html#cb103-5"></a>        }</span>
+<span id="cb103-6"><a href="ml-programming-exercise-3.html#cb103-6"></a>        </span>
+<span id="cb103-7"><a href="ml-programming-exercise-3.html#cb103-7"></a>        <span class="co"># Gray Image</span></span>
+<span id="cb103-8"><a href="ml-programming-exercise-3.html#cb103-8"></a>        <span class="co">#image(z, col=gray.colors(256))</span></span>
+<span id="cb103-9"><a href="ml-programming-exercise-3.html#cb103-9"></a>        </span>
+<span id="cb103-10"><a href="ml-programming-exercise-3.html#cb103-10"></a>        <span class="co"># Compute rows and columns </span></span>
+<span id="cb103-11"><a href="ml-programming-exercise-3.html#cb103-11"></a>        m &lt;-<span class="st"> </span><span class="kw">dim</span>(X)[<span class="dv">1</span>] ; n &lt;-<span class="st"> </span><span class="kw">dim</span>(X)[<span class="dv">2</span>] ; example_height &lt;-<span class="st"> </span>(n <span class="op">/</span><span class="st"> </span>example_width)</span>
+<span id="cb103-12"><a href="ml-programming-exercise-3.html#cb103-12"></a>        </span>
+<span id="cb103-13"><a href="ml-programming-exercise-3.html#cb103-13"></a>        <span class="co"># Compute number of itesm to display</span></span>
+<span id="cb103-14"><a href="ml-programming-exercise-3.html#cb103-14"></a>        display_rows &lt;-<span class="st"> </span><span class="kw">floor</span>(<span class="kw">sqrt</span>(m))</span>
+<span id="cb103-15"><a href="ml-programming-exercise-3.html#cb103-15"></a>        display_cols &lt;-<span class="st"> </span><span class="kw">ceiling</span>(m <span class="op">/</span><span class="st"> </span>display_rows)</span>
+<span id="cb103-16"><a href="ml-programming-exercise-3.html#cb103-16"></a>        </span>
+<span id="cb103-17"><a href="ml-programming-exercise-3.html#cb103-17"></a>        <span class="co"># Between images padding</span></span>
+<span id="cb103-18"><a href="ml-programming-exercise-3.html#cb103-18"></a>        pad &lt;-<span class="st"> </span><span class="dv">1</span></span>
+<span id="cb103-19"><a href="ml-programming-exercise-3.html#cb103-19"></a></span>
+<span id="cb103-20"><a href="ml-programming-exercise-3.html#cb103-20"></a>        <span class="co"># Set up blank display</span></span>
+<span id="cb103-21"><a href="ml-programming-exercise-3.html#cb103-21"></a>        display_array &lt;-<span class="st"> </span><span class="kw">array</span>(<span class="op">-</span><span class="dv">1</span>,<span class="kw">c</span>(pad <span class="op">+</span><span class="st"> </span>display_rows <span class="op">*</span><span class="st"> </span>(example_height <span class="op">+</span><span class="st"> </span>pad),pad <span class="op">+</span><span class="st"> </span>display_cols <span class="op">*</span><span class="st"> </span>(example_width <span class="op">+</span><span class="st"> </span>pad)))</span>
+<span id="cb103-22"><a href="ml-programming-exercise-3.html#cb103-22"></a>        </span>
+<span id="cb103-23"><a href="ml-programming-exercise-3.html#cb103-23"></a>        curr_ex &lt;-<span class="st"> </span><span class="dv">1</span></span>
+<span id="cb103-24"><a href="ml-programming-exercise-3.html#cb103-24"></a>        <span class="cf">for</span> (j <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span>display_rows) {</span>
+<span id="cb103-25"><a href="ml-programming-exercise-3.html#cb103-25"></a>                <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span>display_cols) {</span>
+<span id="cb103-26"><a href="ml-programming-exercise-3.html#cb103-26"></a>                        <span class="cf">if</span> (curr_ex <span class="op">&gt;</span><span class="st"> </span>m) {</span>
+<span id="cb103-27"><a href="ml-programming-exercise-3.html#cb103-27"></a>                                <span class="cf">break</span></span>
+<span id="cb103-28"><a href="ml-programming-exercise-3.html#cb103-28"></a>                        }</span>
+<span id="cb103-29"><a href="ml-programming-exercise-3.html#cb103-29"></a>                        max_val &lt;-<span class="st"> </span><span class="kw">max</span>(<span class="kw">abs</span>(X[curr_ex,]))</span>
+<span id="cb103-30"><a href="ml-programming-exercise-3.html#cb103-30"></a>                        display_array[pad <span class="op">+</span><span class="st"> </span>(j <span class="op">-</span><span class="st"> </span><span class="dv">1</span>) <span class="op">*</span><span class="st"> </span>(example_height <span class="op">+</span><span class="st"> </span>pad) <span class="op">+</span><span class="st"> </span>(<span class="dv">1</span><span class="op">:</span>example_height),</span>
+<span id="cb103-31"><a href="ml-programming-exercise-3.html#cb103-31"></a>                                pad <span class="op">+</span><span class="st"> </span>(i <span class="op">-</span><span class="st"> </span><span class="dv">1</span>) <span class="op">*</span><span class="st"> </span>(example_width <span class="op">+</span><span class="st"> </span>pad) <span class="op">+</span><span class="st"> </span>(<span class="dv">1</span><span class="op">:</span>example_width)] &lt;-</span>
+<span id="cb103-32"><a href="ml-programming-exercise-3.html#cb103-32"></a><span class="st">                        </span><span class="kw">matrix</span>(X[curr_ex,], example_height, example_width) <span class="op">/</span><span class="st"> </span>max_val</span>
+<span id="cb103-33"><a href="ml-programming-exercise-3.html#cb103-33"></a>                        curr_ex &lt;-<span class="st"> </span>curr_ex <span class="op">+</span><span class="st"> </span><span class="dv">1</span></span>
+<span id="cb103-34"><a href="ml-programming-exercise-3.html#cb103-34"></a></span>
+<span id="cb103-35"><a href="ml-programming-exercise-3.html#cb103-35"></a>                }</span>
+<span id="cb103-36"><a href="ml-programming-exercise-3.html#cb103-36"></a>                <span class="cf">if</span> (curr_ex <span class="op">&gt;</span><span class="st"> </span>m){</span>
+<span id="cb103-37"><a href="ml-programming-exercise-3.html#cb103-37"></a>                        <span class="cf">break</span></span>
+<span id="cb103-38"><a href="ml-programming-exercise-3.html#cb103-38"></a>                }        </span>
+<span id="cb103-39"><a href="ml-programming-exercise-3.html#cb103-39"></a>        }</span>
+<span id="cb103-40"><a href="ml-programming-exercise-3.html#cb103-40"></a>        </span>
+<span id="cb103-41"><a href="ml-programming-exercise-3.html#cb103-41"></a>        <span class="co"># Display Image</span></span>
+<span id="cb103-42"><a href="ml-programming-exercise-3.html#cb103-42"></a>  op &lt;-<span class="st"> </span><span class="kw">par</span>(<span class="dt">bg =</span> <span class="st">&quot;gray&quot;</span>)</span>
+<span id="cb103-43"><a href="ml-programming-exercise-3.html#cb103-43"></a>  </span>
+<span id="cb103-44"><a href="ml-programming-exercise-3.html#cb103-44"></a>  <span class="co">#image draws by row from bottom up, but R indexes matrices by column, top down</span></span>
+<span id="cb103-45"><a href="ml-programming-exercise-3.html#cb103-45"></a>  dispArr &lt;-<span class="st"> </span><span class="kw">t</span>(<span class="kw">apply</span>(display_array,<span class="dv">2</span>,rev))</span>
+<span id="cb103-46"><a href="ml-programming-exercise-3.html#cb103-46"></a>  </span>
+<span id="cb103-47"><a href="ml-programming-exercise-3.html#cb103-47"></a>  <span class="kw">image</span>(</span>
+<span id="cb103-48"><a href="ml-programming-exercise-3.html#cb103-48"></a>    <span class="dt">z =</span> dispArr,<span class="dt">col =</span> <span class="kw">gray.colors</span>(<span class="dv">100</span>), <span class="dt">xaxt =</span> <span class="st">&#39;n&#39;</span>,<span class="dt">yaxt =</span> <span class="st">&#39;n&#39;</span></span>
+<span id="cb103-49"><a href="ml-programming-exercise-3.html#cb103-49"></a>  )</span>
+<span id="cb103-50"><a href="ml-programming-exercise-3.html#cb103-50"></a>  </span>
+<span id="cb103-51"><a href="ml-programming-exercise-3.html#cb103-51"></a>  <span class="kw">grid</span>(</span>
+<span id="cb103-52"><a href="ml-programming-exercise-3.html#cb103-52"></a>    <span class="dt">nx =</span> display_cols,display_rows,<span class="dt">col =</span> <span class="st">&#39;black&#39;</span>,<span class="dt">lwd =</span> <span class="dv">2</span>,<span class="dt">lty =</span> <span class="dv">1</span></span>
+<span id="cb103-53"><a href="ml-programming-exercise-3.html#cb103-53"></a>  )</span>
+<span id="cb103-54"><a href="ml-programming-exercise-3.html#cb103-54"></a>  <span class="kw">box</span>()</span>
+<span id="cb103-55"><a href="ml-programming-exercise-3.html#cb103-55"></a>  <span class="kw">par</span>(op)</span>
+<span id="cb103-56"><a href="ml-programming-exercise-3.html#cb103-56"></a>        </span>
+<span id="cb103-57"><a href="ml-programming-exercise-3.html#cb103-57"></a>        </span>
+<span id="cb103-58"><a href="ml-programming-exercise-3.html#cb103-58"></a>        <span class="co"># return(list(h, display_array))</span></span>
+<span id="cb103-59"><a href="ml-programming-exercise-3.html#cb103-59"></a>}</span>
+<span id="cb103-60"><a href="ml-programming-exercise-3.html#cb103-60"></a></span>
+<span id="cb103-61"><a href="ml-programming-exercise-3.html#cb103-61"></a>m &lt;-<span class="st"> </span><span class="kw">dim</span>(X)[<span class="dv">1</span>]</span>
+<span id="cb103-62"><a href="ml-programming-exercise-3.html#cb103-62"></a></span>
+<span id="cb103-63"><a href="ml-programming-exercise-3.html#cb103-63"></a><span class="co"># Randomly select 100 data points to display</span></span>
+<span id="cb103-64"><a href="ml-programming-exercise-3.html#cb103-64"></a>rand_indices &lt;-<span class="st"> </span><span class="kw">sample</span>(m)</span>
+<span id="cb103-65"><a href="ml-programming-exercise-3.html#cb103-65"></a>sel &lt;-<span class="st"> </span>X[rand_indices[<span class="dv">1</span><span class="op">:</span><span class="dv">100</span>], ]</span>
+<span id="cb103-66"><a href="ml-programming-exercise-3.html#cb103-66"></a></span>
+<span id="cb103-67"><a href="ml-programming-exercise-3.html#cb103-67"></a><span class="kw">displayData</span>(sel)</span></code></pre></div>
+<p><img src="bookdw_files/figure-html/unnamed-chunk-57-1.png" width="672" /></p>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="regularized-logistic-regression.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["bookdw.pdf", "bookdw.epub"]
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

@@ -1,0 +1,58 @@
+\contentsline {section}{Week 1}{2}{section*.2}%
+\contentsline {subsection}{What is Machine Learning?}{2}{section*.3}%
+\contentsline {subsection}{Supervised Learning}{2}{section*.4}%
+\contentsline {subsubsection}{Supervised Learning (note)}{2}{section*.5}%
+\contentsline {subsection}{Unsupervised Learning}{3}{section*.6}%
+\contentsline {subsection}{Model Representation}{3}{section*.7}%
+\contentsline {subsection}{Cost Function}{3}{section*.8}%
+\contentsline {subsection}{Cost Function - Intution I}{4}{section*.9}%
+\contentsline {subsection}{Cost Function - Intution II}{4}{section*.10}%
+\contentsline {subsection}{Gradient Descent}{8}{section*.11}%
+\contentsline {subsection}{Gradient Descent Intution}{10}{section*.12}%
+\contentsline {subsection}{Gradient Descent for Linear Regression}{11}{section*.13}%
+\contentsline {paragraph}{Additonal self note}{13}{section*.14}%
+\contentsline {subsection}{Matrices and Vectors}{13}{section*.15}%
+\contentsline {subsection}{Addition and Scalar Multiplication}{15}{section*.16}%
+\contentsline {subsection}{Matrix-Vector Multiplication}{16}{section*.17}%
+\contentsline {subsection}{Matrix-Matrix Multiplication}{17}{section*.18}%
+\contentsline {subsection}{Matrix Multiplication Properties}{17}{section*.19}%
+\contentsline {subsection}{Inverse and Transpose}{19}{section*.20}%
+\contentsline {section}{Week 2}{20}{section*.21}%
+\contentsline {subsection}{Multiple features}{20}{section*.22}%
+\contentsline {subsection}{Gradient Descent for Multiple Variables}{20}{section*.23}%
+\contentsline {paragraph}{Additonal self note}{20}{section*.24}%
+\contentsline {subsection}{Gradient Descent in Practice I - Feature Scaling}{21}{section*.25}%
+\contentsline {subsection}{Gradient Descent in Practice II - Learning Rate}{22}{section*.26}%
+\contentsline {subsection}{Features and Polynomial Regression}{23}{section*.27}%
+\contentsline {subsubsection}{Polynomial Regression}{23}{section*.28}%
+\contentsline {paragraph}{Additonal self note}{23}{section*.29}%
+\contentsline {subsection}{Normal Equation}{24}{section*.30}%
+\contentsline {subsection}{Normal Equation Non-invertibility}{25}{section*.31}%
+\contentsline {subsection}{Octave - Basic Operations}{25}{section*.32}%
+\contentsline {subsection}{Moving Data Around}{28}{section*.33}%
+\contentsline {section}{Week 3}{29}{section*.34}%
+\contentsline {subsection}{Classification}{29}{section*.35}%
+\contentsline {subsection}{Logistic regression - Hpothesis Representation}{29}{section*.36}%
+\contentsline {subsection}{Decision Boundary}{30}{section*.37}%
+\contentsline {subsection}{Logistic Regression - Cost Function}{30}{section*.38}%
+\contentsline {subsection}{Simplified Cost Functin and Gradient Descent - LogReg}{31}{section*.39}%
+\contentsline {subsubsection}{Gradient Descent}{31}{section*.40}%
+\contentsline {subsubsection}{Partial derivative of J(θ)}{32}{section*.41}%
+\contentsline {subsection}{Advanced Optimization}{32}{section*.42}%
+\contentsline {subsection}{Multiclass Classification: One-vs-all}{32}{section*.43}%
+\contentsline {subsection}{The Problem of Overfitting}{33}{section*.44}%
+\contentsline {subsection}{Regularization Cost Function}{34}{section*.45}%
+\contentsline {subsection}{Regularized Linear Regression}{35}{section*.46}%
+\contentsline {subsubsection}{Gradient Descent}{35}{section*.47}%
+\contentsline {subsubsection}{Normal Equation}{35}{section*.48}%
+\contentsline {subsection}{Regularized Logistic Regression}{36}{section*.49}%
+\contentsline {subsubsection}{Cost Function}{36}{section*.50}%
+\contentsline {section}{Week 4}{37}{section*.51}%
+\contentsline {subsection}{Model Representation I}{37}{section*.52}%
+\contentsline {subsection}{Model Representation II}{38}{section*.53}%
+\contentsline {subsubsection}{Examples and Intuitions I}{39}{section*.54}%
+\contentsline {subsubsection}{Examples and Intuitions II}{40}{section*.55}%
+\contentsline {subsection}{Multiclass Classification}{41}{section*.56}%
+\contentsline {section}{Week 5}{42}{section*.57}%
+\contentsline {subsection}{Cost Function and Backpropagation - Neural Networks}{42}{section*.58}%
+\contentsline {subsubsection}{Cost Function}{42}{section*.59}%
