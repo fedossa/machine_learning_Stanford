@@ -1,0 +1,827 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Machine Learning Notes - Andrew Ng</title>
+  <meta name="description" content="Study material for ML - Stanford University" />
+  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Machine Learning Notes - Andrew Ng" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="Study material for ML - Stanford University" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Machine Learning Notes - Andrew Ng" />
+  
+  <meta name="twitter:description" content="Study material for ML - Stanford University" />
+  
+
+<meta name="author" content="Fikir Worku Edossa" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+
+<link rel="next" href="week-2.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+
+
+<style type="text/css">
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Week 1</a><ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#what-is-machine-learning"><i class="fa fa-check"></i><b>1.1</b> What is Machine Learning?</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#supervised-learning"><i class="fa fa-check"></i><b>1.2</b> Supervised Learning</a><ul>
+<li class="chapter" data-level="1.2.1" data-path="index.html"><a href="index.html#supervised-learning-note"><i class="fa fa-check"></i><b>1.2.1</b> Supervised Learning (note)</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#unsupervised-learning"><i class="fa fa-check"></i><b>1.3</b> Unsupervised Learning</a></li>
+<li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#model-representation"><i class="fa fa-check"></i><b>1.4</b> Model Representation</a></li>
+<li class="chapter" data-level="1.5" data-path="index.html"><a href="index.html#cost-function"><i class="fa fa-check"></i><b>1.5</b> Cost Function</a></li>
+<li class="chapter" data-level="1.6" data-path="index.html"><a href="index.html#cost-function---intution-i"><i class="fa fa-check"></i><b>1.6</b> Cost Function - Intution I</a></li>
+<li class="chapter" data-level="1.7" data-path="index.html"><a href="index.html#cost-function---intution-ii"><i class="fa fa-check"></i><b>1.7</b> Cost Function - Intution II</a></li>
+<li class="chapter" data-level="1.8" data-path="index.html"><a href="index.html#gradient-descent"><i class="fa fa-check"></i><b>1.8</b> Gradient Descent</a></li>
+<li class="chapter" data-level="1.9" data-path="index.html"><a href="index.html#gradient-descent-intution"><i class="fa fa-check"></i><b>1.9</b> Gradient Descent Intution</a></li>
+<li class="chapter" data-level="1.10" data-path="index.html"><a href="index.html#gradient-descent-for-linear-regression"><i class="fa fa-check"></i><b>1.10</b> Gradient Descent for Linear Regression</a></li>
+<li class="chapter" data-level="1.11" data-path="index.html"><a href="index.html#matrices-and-vectors"><i class="fa fa-check"></i><b>1.11</b> Matrices and Vectors</a></li>
+<li class="chapter" data-level="1.12" data-path="index.html"><a href="index.html#addition-and-scalar-multiplication"><i class="fa fa-check"></i><b>1.12</b> Addition and Scalar Multiplication</a></li>
+<li class="chapter" data-level="1.13" data-path="index.html"><a href="index.html#matrix-vector-multiplication"><i class="fa fa-check"></i><b>1.13</b> Matrix-Vector Multiplication</a></li>
+<li class="chapter" data-level="1.14" data-path="index.html"><a href="index.html#matrix-matrix-multiplication"><i class="fa fa-check"></i><b>1.14</b> Matrix-Matrix Multiplication</a></li>
+<li class="chapter" data-level="1.15" data-path="index.html"><a href="index.html#matrix-multiplication-properties"><i class="fa fa-check"></i><b>1.15</b> Matrix Multiplication Properties</a></li>
+<li class="chapter" data-level="1.16" data-path="index.html"><a href="index.html#inverse-and-transpose"><i class="fa fa-check"></i><b>1.16</b> Inverse and Transpose</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="week-2.html"><a href="week-2.html"><i class="fa fa-check"></i><b>2</b> Week 2</a><ul>
+<li class="chapter" data-level="2.1" data-path="week-2.html"><a href="week-2.html#multiple-features"><i class="fa fa-check"></i><b>2.1</b> Multiple features</a></li>
+<li class="chapter" data-level="2.2" data-path="week-2.html"><a href="week-2.html#gradient-descent-for-multiple-variables"><i class="fa fa-check"></i><b>2.2</b> Gradient Descent for Multiple Variables</a></li>
+<li class="chapter" data-level="2.3" data-path="week-2.html"><a href="week-2.html#gradient-descent-in-practice-i---feature-scaling"><i class="fa fa-check"></i><b>2.3</b> Gradient Descent in Practice I - Feature Scaling</a></li>
+<li class="chapter" data-level="2.4" data-path="week-2.html"><a href="week-2.html#gradient-descent-in-practice-ii---learning-rate"><i class="fa fa-check"></i><b>2.4</b> Gradient Descent in Practice II - Learning Rate</a></li>
+<li class="chapter" data-level="2.5" data-path="week-2.html"><a href="week-2.html#features-and-polynomial-regression"><i class="fa fa-check"></i><b>2.5</b> Features and Polynomial Regression</a><ul>
+<li class="chapter" data-level="2.5.1" data-path="week-2.html"><a href="week-2.html#polynomial-regression"><i class="fa fa-check"></i><b>2.5.1</b> Polynomial Regression</a></li>
+</ul></li>
+<li class="chapter" data-level="2.6" data-path="week-2.html"><a href="week-2.html#normal-equation"><i class="fa fa-check"></i><b>2.6</b> Normal Equation</a></li>
+<li class="chapter" data-level="2.7" data-path="week-2.html"><a href="week-2.html#normal-equation-non-invertibility"><i class="fa fa-check"></i><b>2.7</b> Normal Equation Non-invertibility</a></li>
+<li class="chapter" data-level="2.8" data-path="week-2.html"><a href="week-2.html#octave---basic-operations"><i class="fa fa-check"></i><b>2.8</b> Octave - Basic Operations</a></li>
+<li class="chapter" data-level="2.9" data-path="week-2.html"><a href="week-2.html#moving-data-around"><i class="fa fa-check"></i><b>2.9</b> Moving Data Around</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="week-3.html"><a href="week-3.html"><i class="fa fa-check"></i><b>3</b> Week 3</a><ul>
+<li class="chapter" data-level="3.1" data-path="week-3.html"><a href="week-3.html#classification"><i class="fa fa-check"></i><b>3.1</b> Classification</a></li>
+<li class="chapter" data-level="3.2" data-path="week-3.html"><a href="week-3.html#logistic-regression---hpothesis-representation"><i class="fa fa-check"></i><b>3.2</b> Logistic regression - Hpothesis Representation</a></li>
+<li class="chapter" data-level="3.3" data-path="week-3.html"><a href="week-3.html#decision-boundary"><i class="fa fa-check"></i><b>3.3</b> Decision Boundary</a></li>
+<li class="chapter" data-level="3.4" data-path="week-3.html"><a href="week-3.html#logistic-regression---cost-function"><i class="fa fa-check"></i><b>3.4</b> Logistic Regression - Cost Function</a></li>
+<li class="chapter" data-level="3.5" data-path="week-3.html"><a href="week-3.html#simplified-cost-functin-and-gradient-descent---logreg"><i class="fa fa-check"></i><b>3.5</b> Simplified Cost Functin and Gradient Descent - LogReg</a><ul>
+<li class="chapter" data-level="3.5.1" data-path="index.html"><a href="index.html#gradient-descent"><i class="fa fa-check"></i><b>3.5.1</b> Gradient Descent</a></li>
+<li class="chapter" data-level="3.5.2" data-path="week-3.html"><a href="week-3.html#partial-derivative-of-jθ"><i class="fa fa-check"></i><b>3.5.2</b> Partial derivative of J(θ)</a></li>
+</ul></li>
+<li class="chapter" data-level="3.6" data-path="week-3.html"><a href="week-3.html#advanced-optimization"><i class="fa fa-check"></i><b>3.6</b> Advanced Optimization</a></li>
+<li class="chapter" data-level="3.7" data-path="week-3.html"><a href="week-3.html#multiclass-classification-one-vs-all"><i class="fa fa-check"></i><b>3.7</b> Multiclass Classification: One-vs-all</a></li>
+<li class="chapter" data-level="3.8" data-path="week-3.html"><a href="week-3.html#the-problem-of-overfitting"><i class="fa fa-check"></i><b>3.8</b> The Problem of Overfitting</a></li>
+<li class="chapter" data-level="3.9" data-path="week-3.html"><a href="week-3.html#regularization-cost-function"><i class="fa fa-check"></i><b>3.9</b> Regularization Cost Function</a></li>
+<li class="chapter" data-level="3.10" data-path="week-3.html"><a href="week-3.html#regularized-linear-regression"><i class="fa fa-check"></i><b>3.10</b> Regularized Linear Regression</a><ul>
+<li class="chapter" data-level="3.10.1" data-path="week-3.html"><a href="week-3.html#gradient-descent-1"><i class="fa fa-check"></i><b>3.10.1</b> Gradient Descent</a></li>
+<li class="chapter" data-level="3.10.2" data-path="week-2.html"><a href="week-2.html#normal-equation"><i class="fa fa-check"></i><b>3.10.2</b> Normal Equation</a></li>
+</ul></li>
+<li class="chapter" data-level="3.11" data-path="week-3.html"><a href="week-3.html#regularized-logistic-regression"><i class="fa fa-check"></i><b>3.11</b> Regularized Logistic Regression</a><ul>
+<li class="chapter" data-level="3.11.1" data-path="index.html"><a href="index.html#cost-function"><i class="fa fa-check"></i><b>3.11.1</b> Cost Function</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="week-4.html"><a href="week-4.html"><i class="fa fa-check"></i><b>4</b> Week 4</a><ul>
+<li class="chapter" data-level="4.1" data-path="week-4.html"><a href="week-4.html#model-representation-i"><i class="fa fa-check"></i><b>4.1</b> Model Representation I</a></li>
+<li class="chapter" data-level="4.2" data-path="week-4.html"><a href="week-4.html#model-representation-ii"><i class="fa fa-check"></i><b>4.2</b> Model Representation II</a><ul>
+<li class="chapter" data-level="4.2.1" data-path="week-4.html"><a href="week-4.html#examples-and-intuitions-i"><i class="fa fa-check"></i><b>4.2.1</b> Examples and Intuitions I</a></li>
+<li class="chapter" data-level="4.2.2" data-path="week-4.html"><a href="week-4.html#examples-and-intuitions-ii"><i class="fa fa-check"></i><b>4.2.2</b> Examples and Intuitions II</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="week-4.html"><a href="week-4.html#multiclass-classification"><i class="fa fa-check"></i><b>4.3</b> Multiclass Classification</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="week-5.html"><a href="week-5.html"><i class="fa fa-check"></i><b>5</b> Week 5</a><ul>
+<li class="chapter" data-level="5.1" data-path="week-5.html"><a href="week-5.html#cost-function-and-backpropagation---neural-networks"><i class="fa fa-check"></i><b>5.1</b> Cost Function and Backpropagation - Neural Networks</a><ul>
+<li class="chapter" data-level="5.1.1" data-path="index.html"><a href="index.html#cost-function"><i class="fa fa-check"></i><b>5.1.1</b> Cost Function</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="week-5.html"><a href="week-5.html#backpropagation-algorithm"><i class="fa fa-check"></i><b>5.2</b> Backpropagation Algorithm</a><ul>
+<li class="chapter" data-level="5.2.1" data-path="week-5.html"><a href="week-5.html#back-propagation-algorithm"><i class="fa fa-check"></i><b>5.2.1</b> Back propagation Algorithm</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="week-5.html"><a href="week-5.html#backpropagation-intuition"><i class="fa fa-check"></i><b>5.3</b> Backpropagation Intuition</a></li>
+<li class="chapter" data-level="5.4" data-path="week-5.html"><a href="week-5.html#implementation-note-unrolling-parameters"><i class="fa fa-check"></i><b>5.4</b> Implementation Note: Unrolling Parameters</a></li>
+<li class="chapter" data-level="5.5" data-path="week-5.html"><a href="week-5.html#gradient-checking"><i class="fa fa-check"></i><b>5.5</b> Gradient Checking</a></li>
+<li class="chapter" data-level="5.6" data-path="week-5.html"><a href="week-5.html#random-initialization"><i class="fa fa-check"></i><b>5.6</b> Random Initialization</a></li>
+<li class="chapter" data-level="5.7" data-path="week-5.html"><a href="week-5.html#putting-it-together"><i class="fa fa-check"></i><b>5.7</b> Putting it Together</a><ul>
+<li class="chapter" data-level="5.7.1" data-path="week-5.html"><a href="week-5.html#training-a-neural-network"><i class="fa fa-check"></i><b>5.7.1</b> Training a Neural Network</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="chapter" data-level="6" data-path="charlie-chapter.html"><a href="charlie-chapter.html"><i class="fa fa-check"></i><b>6</b> Charlie Chapter</a><ul>
+<li class="chapter" data-level="6.1" data-path="charlie-chapter.html"><a href="charlie-chapter.html#including-plots"><i class="fa fa-check"></i><b>6.1</b> Including Plots</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="what-happens-here.html"><a href="what-happens-here.html"><i class="fa fa-check"></i><b>7</b> What happens here?</a></li>
+<li class="chapter" data-level="8" data-path="ml-ex-2-r-implementationa-logistic-regression.html"><a href="ml-ex-2-r-implementationa-logistic-regression.html"><i class="fa fa-check"></i><b>8</b> 1 ML Ex 2 R implementationa: Logistic Regression</a><ul>
+<li class="chapter" data-level="8.1" data-path="ml-ex-2-r-implementationa-logistic-regression.html"><a href="ml-ex-2-r-implementationa-logistic-regression.html#introduction"><i class="fa fa-check"></i><b>8.1</b> 1.1 Introduction</a><ul>
+<li class="chapter" data-level="8.1.1" data-path="ml-ex-2-r-implementationa-logistic-regression.html"><a href="ml-ex-2-r-implementationa-logistic-regression.html#data-prep"><i class="fa fa-check"></i><b>8.1.1</b> Data Prep</a></li>
+<li class="chapter" data-level="8.1.2" data-path="ml-ex-2-r-implementationa-logistic-regression.html"><a href="ml-ex-2-r-implementationa-logistic-regression.html#visualizing-the-data"><i class="fa fa-check"></i><b>8.1.2</b> Visualizing the data</a></li>
+<li class="chapter" data-level="8.1.3" data-path="ml-ex-2-r-implementationa-logistic-regression.html"><a href="ml-ex-2-r-implementationa-logistic-regression.html#warmup-exercise-sigmoid-function"><i class="fa fa-check"></i><b>8.1.3</b> Warmup exercise: sigmoid function</a></li>
+</ul></li>
+<li class="chapter" data-level="8.2" data-path="ml-ex-2-r-implementationa-logistic-regression.html"><a href="ml-ex-2-r-implementationa-logistic-regression.html#cost-function-and-gradient"><i class="fa fa-check"></i><b>8.2</b> 1.2 Cost function and gradient</a></li>
+<li class="chapter" data-level="8.3" data-path="ml-ex-2-r-implementationa-logistic-regression.html"><a href="ml-ex-2-r-implementationa-logistic-regression.html#learning-parameters-using-fminunc"><i class="fa fa-check"></i><b>8.3</b> 1.3 Learning parameters using fminunc</a></li>
+<li class="chapter" data-level="8.4" data-path="ml-ex-2-r-implementationa-logistic-regression.html"><a href="ml-ex-2-r-implementationa-logistic-regression.html#plot-the-decision-boundary"><i class="fa fa-check"></i><b>8.4</b> 1.4 Plot the decision boundary</a></li>
+<li class="chapter" data-level="8.5" data-path="ml-ex-2-r-implementationa-logistic-regression.html"><a href="ml-ex-2-r-implementationa-logistic-regression.html#evaluating-logistic-regression"><i class="fa fa-check"></i><b>8.5</b> 1.5 Evaluating logistic regression</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="week-3.html"><a href="week-3.html#regularized-logistic-regression"><i class="fa fa-check"></i><b>9</b> 2 Regularized logistic regression</a><ul>
+<li class="chapter" data-level="9.1" data-path="regularized-logistic-regression.html"><a href="regularized-logistic-regression.html"><i class="fa fa-check"></i><b>9.1</b> 2.1 Visualizing the data</a></li>
+<li class="chapter" data-level="9.2" data-path="regularized-logistic-regression.html"><a href="regularized-logistic-regression.html#feature-mapping"><i class="fa fa-check"></i><b>9.2</b> 2.2 Feature mapping</a></li>
+<li class="chapter" data-level="9.3" data-path="regularized-logistic-regression.html"><a href="regularized-logistic-regression.html#cost-function-and-gradient-1"><i class="fa fa-check"></i><b>9.3</b> 2.3 Cost function and gradient</a></li>
+<li class="chapter" data-level="9.4" data-path="regularized-logistic-regression.html"><a href="regularized-logistic-regression.html#learning-parameters-using-fminunc-1"><i class="fa fa-check"></i><b>9.4</b> 2.4 Learning parameters using fminunc</a></li>
+<li class="chapter" data-level="9.5" data-path="regularized-logistic-regression.html"><a href="regularized-logistic-regression.html#plotting-the-decision-boundary"><i class="fa fa-check"></i><b>9.5</b> 2.5 Plotting the decision boundary</a></li>
+<li class="chapter" data-level="9.6" data-path="regularized-logistic-regression.html"><a href="regularized-logistic-regression.html#varying-lambda-levels"><i class="fa fa-check"></i><b>9.6</b> 2.4 Varying lambda levels</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="ml-programming-exercise-3.html"><a href="ml-programming-exercise-3.html"><i class="fa fa-check"></i><b>10</b> ML - Programming Exercise 3</a><ul>
+<li class="chapter" data-level="10.1" data-path="ml-programming-exercise-3.html"><a href="ml-programming-exercise-3.html#introduction-multi-class-classification"><i class="fa fa-check"></i><b>10.1</b> Introduction: Multi-class Classification</a><ul>
+<li class="chapter" data-level="10.1.1" data-path="ml-programming-exercise-3.html"><a href="ml-programming-exercise-3.html#dataset"><i class="fa fa-check"></i><b>10.1.1</b> 1.1 Dataset</a></li>
+<li class="chapter" data-level="10.1.2" data-path="ml-ex-2-r-implementationa-logistic-regression.html"><a href="ml-ex-2-r-implementationa-logistic-regression.html#visualizing-the-data"><i class="fa fa-check"></i><b>10.1.2</b> 1.2 Visualizing the data</a></li>
+</ul></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Machine Learning Notes - Andrew Ng</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="header">
+<h1 class="title">Machine Learning Notes - Andrew Ng</h1>
+<p class="author"><em>Fikir Worku Edossa</em></p>
+<p class="date"><em>6/21/2020</em></p>
+</div>
+<div id="week-1" class="section level1">
+<h1><span class="header-section-number">1</span> Week 1</h1>
+<div id="what-is-machine-learning" class="section level2">
+<h2><span class="header-section-number">1.1</span> What is Machine Learning?</h2>
+<p>Arthur Samuel described it as: <strong>“the field of study that gives computers the ability to learn without being explicitly programmed.”</strong>
+This is an older, informal definition.</p>
+<p>Modern: Tom Mitchell (1998) defines machine learning by saying that a well-posed learning problem is defined as follows.</p>
+<ul>
+<li><strong>Well-posed Learning Problem: A computer program is said to learn from experience E with respect to some task T and some performance measure P, if its performance on T, as measured by P, improves with experience E.</strong></li>
+</ul>
+<p>In the checkers example</p>
+<ul>
+<li>E is the experience of playing the game 10,000’s of times against itself.</li>
+<li>T is the task of playing checkers</li>
+<li>P is probability of winning the next game of checkers.</li>
+</ul>
+<p>Two types of ML algorithms:</p>
+<ul>
+<li>supervised learning</li>
+<li>unsupervised learning.</li>
+</ul>
+<p>Other types: reinforcement learning, recommended systems.</p>
+</div>
+<div id="supervised-learning" class="section level2">
+<h2><span class="header-section-number">1.2</span> Supervised Learning</h2>
+<ul>
+<li><p>Regression problem: Where you are trying to fit a model to explain a continuous variable by using a predictor.</p></li>
+<li><p>Classification Problem: Where you are trying to fit a model to explain a bernoulli/binomial variable by using a predictor. - When you have multiple predictors it makes sense to visualize it with the predictors and point label the outcome variable.</p></li>
+</ul>
+<div id="supervised-learning-note" class="section level3">
+<h3><span class="header-section-number">1.2.1</span> Supervised Learning (note)</h3>
+<p>In supervised learning, we are given a data set and already know what our correct output should look like, having the idea that there is a relationship between the input and the output.</p>
+<p>Supervised learning problems are categorized into “regression” and “classification” problems. In a regression problem, we are trying to predict results within a continuous output, meaning that we are trying to map input variables to some continuous function.</p>
+<p>In a classification problem, we are instead trying to predict results in a discrete output. In other words, we are trying to map input variables into discrete categories.</p>
+<p>Example 1:</p>
+<p>Given data about the size of houses on the real estate market, try to predict their price. Price as a function of size is a continuous output, so this is a regression problem.</p>
+<p>We could turn this example into a classification problem by instead making our output about whether the house “sells for more or less than the asking price.” Here we are classifying the houses based on price into two discrete categories.</p>
+<p>Example 2:</p>
+<ol style="list-style-type: lower-alpha">
+<li><p>Regression - Given a picture of a person, we have to predict their age on the basis of the given picture</p></li>
+<li><p>Classification - Given a patient with a tumor, we have to predict whether the tumor is malignant or benign.</p></li>
+</ol>
+</div>
+</div>
+<div id="unsupervised-learning" class="section level2">
+<h2><span class="header-section-number">1.3</span> Unsupervised Learning</h2>
+<p>Unsupervised learning allows us to approach problems with little or no idea what our results should look like. We can derive structure from data where we don’t necessarily know the effect of the variables.</p>
+<p>We can derive this structure by clustering the data based on relationships among the variables in the data.</p>
+<p>With unsupervised learning there is no feedback based on the prediction results.</p>
+<p>Example:</p>
+<p>Clustering: Take a collection of 1,000,000 different genes, and find a way to automatically group these genes into groups that are somehow similar or related by different variables, such as lifespan, location, roles, and so on.</p>
+<p>Non-clustering: The “Cocktail Party Algorithm”, allows you to find structure in a chaotic environment. (i.e. identifying individual voices and music from a mesh of sounds at a cocktail party).</p>
+</div>
+<div id="model-representation" class="section level2">
+<h2><span class="header-section-number">1.4</span> Model Representation</h2>
+<p>To establish notation for future use, we’ll use <span class="math inline">\(x^{i}\)</span> to denote the “input” variables (living area in this example), also called input features, and <span class="math inline">\(y^{i}\)</span> to denote the “output” or target variable that we are trying to predict (price). A pair (<span class="math inline">\(x^{i}\)</span> , <span class="math inline">\(y^{i}\)</span>) is called a training example, and the dataset that we’ll be using to learn—a list of m training examples {(<span class="math inline">\(x^{(i)}\)</span> , <span class="math inline">\(y^{(i)}\)</span> ); i = 1, . . . , m—is called a training set. Note that the superscript “(i)” in the notation is simply an index into the training set, and has nothing to do with
+exponentiation. We will also use X to denote the space of input values, and Y to
+denote the space of output values. In this example, X = Y = ℝ.</p>
+<p>To describe the supervised learning problem slightly more formally, our goal is,
+given a training set, to learn a function h : X → Y so that h(x) is a “good”
+predictor for the corresponding value of y. For historical reasons, this function
+h is called a hypothesis. Seen pictorially, the process is therefore like this:</p>
+<div class="figure">
+<img src="Model_representation.png" alt="" />
+<p class="caption">Model Representation</p>
+</div>
+<p>When the target variable that we’re trying to predict is continuous, such as in
+our housing example, we call the learning problem a regression problem. When y
+can take on only a small number of discrete values (such as if, given the living
+area, we wanted to predict if a dwelling is a house or an apartment, say), we
+call it a classification problem.</p>
+</div>
+<div id="cost-function" class="section level2">
+<h2><span class="header-section-number">1.5</span> Cost Function</h2>
+<p>We can measure the accuracy of our hypothesis function by using a cost function.
+This takes an average difference (actually a fancier version of an average) of
+all the results of the hypothesis with inputs from x’s and the actual output y’s.</p>
+<p><span class="math inline">\(J(\theta_0, \theta_1) = \dfrac {1}{2m} \displaystyle \sum _{i=1}^m \left ( \hat{y}_{i}- y_{i} \right)^2 = \dfrac {1}{2m} \displaystyle \sum _{i=1}^m \left (h_\theta (x_{i}) - y_{i} \right)^2\)</span></p>
+<p>To break it apart, it is <span class="math inline">\(\frac{1}{2} \bar{x}\)</span> where <span class="math inline">\(\bar{x}\)</span> is the mean of the
+squares of <span class="math inline">\(h_\theta (x_{i}) - y_{i}\)</span>, or the difference between the predicted
+value and the actual value.</p>
+<p>This function is otherwise called the <strong>“Squared error function”</strong>, or <strong>“Mean squared error”</strong>. The mean is halved <span class="math inline">\(\left(\frac{1}{2}\right)\)</span> as a convenience for the
+computation of the gradient descent, as the derivative term of the square function
+will cancel out the <span class="math inline">\(\frac{1}{2}\)</span> term.</p>
+<p>The following image summarizes what the cost function does:</p>
+<div class="figure">
+<img src="cost_function.png" alt="" />
+<p class="caption">Cost function summary</p>
+</div>
+</div>
+<div id="cost-function---intution-i" class="section level2">
+<h2><span class="header-section-number">1.6</span> Cost Function - Intution I</h2>
+<p>If we try to think of it in visual terms, our training data set is scattered on the x-y plane. We are trying to make a straight line (defined by <span class="math inline">\(h_\theta(x)\)</span>) which passes through these scattered data points.</p>
+<p>Our objective is to get the best possible line. The best possible line will be such so that the average squared vertical distances of the scattered points from the line will be the least. Ideally, the line should pass through all the points of our training data set. In such a case, the value of <span class="math inline">\(J(\theta_0, \theta_1)\)</span> will be 0. The following example shows the ideal situation where we have a cost function of 0.</p>
+<div class="figure">
+<img src="Zero_cost_function.png" alt="" />
+<p class="caption">Zero cost function</p>
+</div>
+<p>When <span class="math inline">\(\theta_1 = 1\)</span>, we get a slope of 1 which goes through every single data point in our model. Conversely, when <span class="math inline">\(\theta_1 = 0.5\)</span>, we see the vertical distance from our fit to the data points increase.</p>
+<div class="figure">
+<img src="thetapointfive.png" alt="" />
+<p class="caption">0.5 <span class="math inline">\(\theta\)</span></p>
+</div>
+<p>This increases our cost function to 0.58. Plotting several other points yields to the following graph:</p>
+<div class="figure">
+<img src="cost_function_graph.png" alt="" />
+<p class="caption">Cost Function Graph for different values of <span class="math inline">\(\theta\)</span></p>
+</div>
+<p>Thus as a goal, we should try to minimize the cost function. In this case, <span class="math inline">\(\theta_1 = 1\)</span> is our global minimum.</p>
+</div>
+<div id="cost-function---intution-ii" class="section level2">
+<h2><span class="header-section-number">1.7</span> Cost Function - Intution II</h2>
+<p>A contour plot is a graph that contains many contour lines. A contour line of a two variable function has a constant value at all points of the same line. An example of such a graph is the one to the right below.</p>
+<div class="figure">
+<img src="contour.png" alt="" />
+<p class="caption">Contour Plot - iso things in microeconomics</p>
+</div>
+<p>Taking any color and going along the ‘circle’, one would expect to get the same value of the cost function. For example, the three green points found on the green line above have the same value for <span class="math inline">\(J(\theta_0,\theta_1)\)</span> and as a result, they are found along the same line. The circled x displays the value of the cost function for the graph on the left when <span class="math inline">\(\theta_0 = 800\)</span> and <span class="math inline">\(\theta_1 = -0.15\)</span>. Taking another h(x) and plotting its contour plot, one gets the following graphs:</p>
+<p><img src="cost_function_intution2_graph2.png" /></p>
+<p>When <span class="math inline">\(\theta_0 = 360\)</span> and <span class="math inline">\(\theta_1 = 0\)</span>, the value of <span class="math inline">\(J(\theta_0,\theta_1)\)</span> in the contour plot gets closer to the center thus reducing the cost function error. Now giving our hypothesis function a slightly positive slope results in a better fit of the data.</p>
+<p><img src="cost_function_intution2_graph3.png" /></p>
+<p>The graph above minimizes the cost function as much as possible and consequently, the result of <span class="math inline">\(\theta_1\)</span> and <span class="math inline">\(\theta_0\)</span> tend to be around 0.12 and 250 respectively. Plotting those values on our graph to the right seems to put our point in the center of the inner most ‘circle’.</p>
+</div>
+<div id="gradient-descent" class="section level2">
+<h2><span class="header-section-number">1.8</span> Gradient Descent</h2>
+<p>So we have our hypothesis function and we have a way of measuring how well it fits into the data. Now we need to estimate the parameters in the hypothesis function. That’s where gradient descent comes in.</p>
+<p>Imagine that we graph our hypothesis function based on its fields <span class="math inline">\(\theta_0\)</span> and <span class="math inline">\(\theta_1\)</span> (actually we are graphing the cost function as a function of the parameter estimates). We are not graphing x and y itself, but the parameter range of our hypothesis function and the cost resulting from selecting a particular set of parameters.</p>
+<p>We put <span class="math inline">\(\theta_0\)</span> on the x axis and <span class="math inline">\(\theta_1\)</span> on the y axis, with the cost function on the vertical z axis. The points on our graph will be the result of the cost function using our hypothesis with those specific theta parameters. The graph below depicts such a setup.</p>
+<p><img src="Gradient_descent_graph_1.png" /></p>
+<p>We will know that we have succeeded when our cost function is at the very bottom of the pits in our graph, i.e. when its value is the minimum. The red arrows show the minimum points in the graph.</p>
+<p>The way we do this is by taking the derivative (the tangential line to a function) of our cost function. The slope of the tangent is the derivative at that point and it will give us a direction to move towards. We make steps down the cost function in the direction with the steepest descent. The size of each step is determined by the parameter α, which is called the learning rate.</p>
+<p>For example, the distance between each ‘star’ in the graph above represents a step determined by our parameter α. A smaller α would result in a smaller step and a larger α results in a larger step. The direction in which the step is taken is determined by the partial derivative of <span class="math inline">\(J(\theta_0,\theta_1)\)</span>. Depending on where one starts on the graph, one could end up at different points. The image above shows us two different starting points that end up in two different places.</p>
+<p>The gradient descent algorithm is:</p>
+<p>repeat until convergence:</p>
+<p><span class="math inline">\(\theta_j := \theta_j - \alpha \frac{\partial}{\partial \theta_j} J(\theta_0, \theta_1)\)</span></p>
+<p>where</p>
+<p>j=0,1 represents the feature index number. (In Econometrics this is just the <span class="math inline">\(\beta_0\)</span> and <span class="math inline">\(\beta_1\)</span> here intercept and the slop for the first explanatory variable)</p>
+<p>At each iteration j, one should simultaneously update the parameters <span class="math inline">\(\theta_1, \theta_2,...,\theta_n\)</span>. Updating a specific parameter prior to calculating another one on the <span class="math inline">\(j^{(th)}\)</span> iteration would yield to a wrong implementation.</p>
+<p><img src="Gradient_descent_graph_2.png" /></p>
+</div>
+<div id="gradient-descent-intution" class="section level2">
+<h2><span class="header-section-number">1.9</span> Gradient Descent Intution</h2>
+<p>In this video we explored the scenario where we used one parameter <span class="math inline">\(\theta_1\)</span> and plotted its cost function to implement a gradient descent. Our formula for a single parameter was :</p>
+<p>Repeat until convergence:</p>
+<p><span class="math inline">\(\theta_1:=\theta_1-\alpha \frac{d}{d\theta_1} J(\theta_1)\)</span></p>
+<p>Regardless of the slope’s sign for <span class="math inline">\(\frac{d}{d\theta_1} J(\theta_1)\)</span>, <span class="math inline">\(\theta_1\)</span> eventually converges to its minimum value. The following graph shows that when the slope is negative, the value of <span class="math inline">\(\theta_1\)</span> increases and when it is positive, the value of <span class="math inline">\(\theta_1\)</span> decreases.</p>
+<p><img src="Gradien_Descent_Intution_graph_1.png" /></p>
+<p>On a side note, we should adjust our parameter <span class="math inline">\(\alpha\)</span> to ensure that the gradient descent algorithm converges in a reasonable time. Failure to converge or too much time to obtain the minimum value imply that our step size is wrong.</p>
+<p><img src="Gradien_Descent_Intution_graph_2.png" /></p>
+<p>How does gradient descent converge with a fixed step size <span class="math inline">\(\alpha\)</span>?
+The intuition behind the convergence is that <span class="math inline">\(\frac{d}{d\theta_1} J(\theta_1)\)</span> approaches 0 as we approach the bottom of our convex function. At the minimum, the derivative will always be 0 and thus we get:</p>
+<p><span class="math inline">\(\theta_1:=\theta_1-\alpha * 0\)</span></p>
+<p><img src="Gradien_Descent_Intution_graph_3.png" /></p>
+</div>
+<div id="gradient-descent-for-linear-regression" class="section level2">
+<h2><span class="header-section-number">1.10</span> Gradient Descent for Linear Regression</h2>
+<p>When specifically applied to the case of linear regression, a new form of the gradient descent equation can be derived. We can substitute our actual cost function and our actual hypothesis function and modify the equation to :</p>
+<p><span class="math display">\[\begin{align} \text{repeat until convergence: } \lbrace &amp; \newline \theta_0 := &amp; \theta_0 - \alpha \frac{1}{m} \sum\limits_{i=1}^{m}(h_\theta(x_{i}) - y_{i}) \newline \theta_1 := &amp; \theta_1 - \alpha \frac{1}{m} \sum\limits_{i=1}^{m}\left((h_\theta(x_{i}) - y_{i}) x_{i}\right) \newline \rbrace&amp; \end{align}\]</span></p>
+<p>where m is the size of the training set, <span class="math inline">\(\theta_0\)</span> a constant that will be changing simultaneously with <span class="math inline">\(\theta_1\)</span> and <span class="math inline">\(x_{i}, y_{i}\)</span> are values of the given training set (data).</p>
+<p>Note that we have separated out the two cases for <span class="math inline">\(\theta_j\)</span> into separate equations for <span class="math inline">\(\theta_0\)</span> and <span class="math inline">\(\theta_1\)</span>; and that for <span class="math inline">\(\theta_1\)</span> we are multiplying <span class="math inline">\(x_{i}\)</span> at the end due to the derivative.</p>
+<p>The following is a derivation of <span class="math inline">\(\frac {\partial}{\partial \theta_j}J(\theta)\)</span> for a single example :</p>
+<div class="figure">
+<img src="Gradient_descent_for_linear_regression_graph_1.png" alt="" />
+<p class="caption"><span style="color:red">This would be a derivation of the loss function with respect to <span class="math inline">\(\beta\)</span> for regression through the origin with one predictor</span></p>
+</div>
+<p>The point of all this is that if we start with a guess for our hypothesis and then repeatedly apply these gradient descent equations, our hypothesis will become more and more accurate.</p>
+<p>So, this is simply gradient descent on the original cost function J. This method looks at every example in the entire training set on every step, and is called <strong>batch gradient descent</strong>. Note that, while gradient descent can be susceptible to local minima in general, the optimization problem we have posed here for linear regression has only one global, and no other local, optima; thus gradient descent always converges (assuming the learning rate α is not too large) to the global minimum. Indeed, J is a convex quadratic function. Here is an example of gradient descent as it is run to minimize a quadratic function.</p>
+<p><img src="Gradient_descent_for_linear_regression_graph_2.png" /></p>
+<p>The ellipses shown above are the contours of a quadratic function. Also shown is the trajectory taken by gradient descent, which was initialized at (48,30). The x’s in the figure (joined by straight lines) mark the successive values of θ that gradient descent went through as it converged to its minimum.</p>
+<div id="additonal-self-note" class="section level4">
+<h4><span class="header-section-number">1.10.0.1</span> Additonal self note</h4>
+<p><span style="color:red">
+Actually, if you replace <span class="math inline">\(\\h_\theta (x_i)\)</span> with <span class="math inline">\(\theta_0 + \theta_1*X_i\)</span>, in the cost function then you can derive the partial derivative yourself and you will get the same results. Plus the multivariate gradient descent should come as a normal extension of what is done here. Essentially, you are holding all explanatory variables constant then mapping the slope of one explanatory variable or the intercept against the cost function. Finding the slop and adjusting the value depending on this slope and also doing all this simultaneously of course.
+</span></p>
+<p><span class="math inline">\(J(\theta_0, \theta_1) = \dfrac {1}{2m} \displaystyle \sum _{i=1}^m \left ( \hat{y}_{i}- y_{i} \right)^2 = \dfrac {1}{2m} \displaystyle \sum _{i=1}^m \left (h_\theta (x_{i}) - y_{i} \right)^2\)</span></p>
+<p><span class="math inline">\(J(\theta_0, \theta_1) = \dfrac {1}{2m} \displaystyle \sum _{i=1}^m \left (h_\theta (x_{i}) - y_{i} \right)^2\)</span></p>
+<p><span class="math inline">\(J(\theta_0, \theta_1) = \dfrac {1}{2m} \displaystyle \sum _{i=1}^m \left ((\theta_0 + \theta_1*X_i) - y_{i} \right)^2\)</span></p>
+<p><span style="color:red">i.e partial derivative of the last equation with respect to <span class="math inline">\(\theta_0\)</span> and <span class="math inline">\(\theta_1\)</span>.</span></p>
+</div>
+</div>
+<div id="matrices-and-vectors" class="section level2">
+<h2><span class="header-section-number">1.11</span> Matrices and Vectors</h2>
+<p>Matrices are 2-dimensional arrays:</p>
+<p><span class="math inline">\(\begin{bmatrix} a &amp; b &amp; c \newline d &amp; e &amp; f \newline g &amp; h &amp; i \newline j &amp; k &amp; l\end{bmatrix}\)</span></p>
+<p>The above matrix has four rows and three columns, so it is a 4 x 3 matrix.</p>
+<p>A vector is a matrix with one column and many rows:</p>
+<p><span class="math inline">\(\begin{bmatrix} w \newline x \newline y \newline z \end{bmatrix}\)</span></p>
+<p>So vectors are a subset of matrices. The above vector is a 4 x 1 matrix.</p>
+<p>Notation and terms:</p>
+<ul>
+<li><span class="math inline">\(A_{ij}\)</span> refers to the element in the ith row and jth column of matrix A.</li>
+<li>A vector with ‘n’ rows is referred to as an ‘n’-dimensional vector.</li>
+<li><span class="math inline">\(v_i\)</span> refers to the element in the ith row of the vector.</li>
+<li>In general, all our vectors and matrices will be 1-indexed. Note that for some programming languages, the arrays are 0-indexed.</li>
+<li>Matrices are usually denoted by uppercase names while vectors are lowercase.</li>
+<li>“Scalar” means that an object is a single value, not a vector or matrix.</li>
+<li><span class="math inline">\(\mathbb{R}\)</span> refers to the set of scalar real numbers.</li>
+<li><span class="math inline">\(\mathbb{R^n}\)</span> refers to the set of n-dimensional vectors of real numbers.</li>
+</ul>
+<p>Run the cell below to get familiar with the commands in Octave/Matlab. Feel free to create matrices and vectors and try out different things.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode octave"><code class="sourceCode octave"><span id="cb1-1"><a href="index.html#cb1-1"></a><span class="co">% The ; denotes we are going back to a new row.</span></span>
+<span id="cb1-2"><a href="index.html#cb1-2"></a>A <span class="op">=</span> [<span class="fl">1</span><span class="op">,</span> <span class="fl">2</span><span class="op">,</span> <span class="fl">3</span><span class="op">;</span> <span class="fl">4</span><span class="op">,</span> <span class="fl">5</span><span class="op">,</span> <span class="fl">6</span><span class="op">;</span> <span class="fl">7</span><span class="op">,</span> <span class="fl">8</span><span class="op">,</span> <span class="fl">9</span><span class="op">;</span> <span class="fl">10</span><span class="op">,</span> <span class="fl">11</span><span class="op">,</span> <span class="fl">12</span>]</span>
+<span id="cb1-3"><a href="index.html#cb1-3"></a></span>
+<span id="cb1-4"><a href="index.html#cb1-4"></a><span class="co">% Initialize a vector </span></span>
+<span id="cb1-5"><a href="index.html#cb1-5"></a>v <span class="op">=</span> [<span class="fl">1</span><span class="op">;</span><span class="fl">2</span><span class="op">;</span><span class="fl">3</span>] </span>
+<span id="cb1-6"><a href="index.html#cb1-6"></a></span>
+<span id="cb1-7"><a href="index.html#cb1-7"></a><span class="co">% Get the dimension of the matrix A where m = rows and n = columns</span></span>
+<span id="cb1-8"><a href="index.html#cb1-8"></a>[m<span class="op">,</span>n] <span class="op">=</span> <span class="fu">size</span>(A)</span>
+<span id="cb1-9"><a href="index.html#cb1-9"></a></span>
+<span id="cb1-10"><a href="index.html#cb1-10"></a><span class="co">% You could also store it this way</span></span>
+<span id="cb1-11"><a href="index.html#cb1-11"></a>dim_A <span class="op">=</span> <span class="fu">size</span>(A)</span>
+<span id="cb1-12"><a href="index.html#cb1-12"></a></span>
+<span id="cb1-13"><a href="index.html#cb1-13"></a><span class="co">% Get the dimension of the vector v </span></span>
+<span id="cb1-14"><a href="index.html#cb1-14"></a>dim_v <span class="op">=</span> <span class="fu">size</span>(v)</span>
+<span id="cb1-15"><a href="index.html#cb1-15"></a></span>
+<span id="cb1-16"><a href="index.html#cb1-16"></a><span class="co">% Now let&#39;s index into the 2nd row 3rd column of matrix A</span></span>
+<span id="cb1-17"><a href="index.html#cb1-17"></a>A_23 <span class="op">=</span> A(<span class="fl">2</span><span class="op">,</span><span class="fl">3</span>)</span></code></pre></div>
+<pre><code>## A =
+## 
+##     1    2    3
+##     4    5    6
+##     7    8    9
+##    10   11   12
+## 
+## v =
+## 
+##    1
+##    2
+##    3
+## 
+## m =  4
+## n =  3
+## dim_A =
+## 
+##    4   3
+## 
+## dim_v =
+## 
+##    3   1
+## 
+## A_23 =  6</code></pre>
+</div>
+<div id="addition-and-scalar-multiplication" class="section level2">
+<h2><span class="header-section-number">1.12</span> Addition and Scalar Multiplication</h2>
+<p>Addition and subtraction are element-wise, so you simply add or subtract each corresponding element:</p>
+<p><span class="math inline">\(\begin{bmatrix} a &amp; b \newline c &amp; d \newline \end{bmatrix} +\begin{bmatrix} w &amp; x \newline y &amp; z \newline \end{bmatrix} =\begin{bmatrix} a+w &amp; b+x \newline c+y &amp; d+z \newline \end{bmatrix}\)</span></p>
+<p>Subtracting Matrices:</p>
+<p><span class="math inline">\(\begin{bmatrix} a &amp; b \newline c &amp; d \newline \end{bmatrix} - \begin{bmatrix} w &amp; x \newline y &amp; z \newline \end{bmatrix} =\begin{bmatrix} a-w &amp; b-x \newline c-y &amp; d-z \newline \end{bmatrix}\)</span></p>
+<p>To add or subtract two matrices, their dimensions must be the same.</p>
+<p>In scalar multiplication, we simply multiply every element by the scalar value:</p>
+<p><span class="math inline">\(\begin{bmatrix} a &amp; b \newline c &amp; d \newline \end{bmatrix} * x =\begin{bmatrix} a*x &amp; b*x \newline c*x &amp; d*x \newline \end{bmatrix}\)</span></p>
+<p>In scalar division, we simply divide every element by the scalar value:</p>
+<p><span class="math inline">\(\begin{bmatrix} a &amp; b \newline c &amp; d \newline \end{bmatrix} / x =\begin{bmatrix} a /x &amp; b/x \newline c /x &amp; d /x \newline \end{bmatrix}\)</span></p>
+<p>Experiment below with the Octave/Matlab commands for matrix addition and scalar multiplication. Feel free to try out different commands. Try to write out your answers for each command before running the cell below.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode octave"><code class="sourceCode octave"><span id="cb3-1"><a href="index.html#cb3-1"></a></span>
+<span id="cb3-2"><a href="index.html#cb3-2"></a><span class="co">% Initialize matrix A and B </span></span>
+<span id="cb3-3"><a href="index.html#cb3-3"></a>A <span class="op">=</span> [<span class="fl">1</span><span class="op">,</span> <span class="fl">2</span><span class="op">,</span> <span class="fl">4</span><span class="op">;</span> <span class="fl">5</span><span class="op">,</span> <span class="fl">3</span><span class="op">,</span> <span class="fl">2</span>]</span>
+<span id="cb3-4"><a href="index.html#cb3-4"></a>B <span class="op">=</span> [<span class="fl">1</span><span class="op">,</span> <span class="fl">3</span><span class="op">,</span> <span class="fl">4</span><span class="op">;</span> <span class="fl">1</span><span class="op">,</span> <span class="fl">1</span><span class="op">,</span> <span class="fl">1</span>]</span>
+<span id="cb3-5"><a href="index.html#cb3-5"></a></span>
+<span id="cb3-6"><a href="index.html#cb3-6"></a><span class="co">% Initialize constant s </span></span>
+<span id="cb3-7"><a href="index.html#cb3-7"></a>s <span class="op">=</span> <span class="fl">2</span></span>
+<span id="cb3-8"><a href="index.html#cb3-8"></a></span>
+<span id="cb3-9"><a href="index.html#cb3-9"></a><span class="co">% See how element-wise addition works</span></span>
+<span id="cb3-10"><a href="index.html#cb3-10"></a>add_AB <span class="op">=</span> A <span class="op">+</span> B </span>
+<span id="cb3-11"><a href="index.html#cb3-11"></a></span>
+<span id="cb3-12"><a href="index.html#cb3-12"></a><span class="co">% See how element-wise subtraction works</span></span>
+<span id="cb3-13"><a href="index.html#cb3-13"></a>sub_AB <span class="op">=</span> A <span class="op">-</span> B</span>
+<span id="cb3-14"><a href="index.html#cb3-14"></a></span>
+<span id="cb3-15"><a href="index.html#cb3-15"></a><span class="co">% See how scalar multiplication works</span></span>
+<span id="cb3-16"><a href="index.html#cb3-16"></a>mult_As <span class="op">=</span> A <span class="op">*</span> s</span>
+<span id="cb3-17"><a href="index.html#cb3-17"></a></span>
+<span id="cb3-18"><a href="index.html#cb3-18"></a><span class="co">% Divide A by s</span></span>
+<span id="cb3-19"><a href="index.html#cb3-19"></a>div_As <span class="op">=</span> A <span class="op">/</span> s</span>
+<span id="cb3-20"><a href="index.html#cb3-20"></a></span>
+<span id="cb3-21"><a href="index.html#cb3-21"></a><span class="co">% What happens if we have a Matrix + scalar?</span></span>
+<span id="cb3-22"><a href="index.html#cb3-22"></a>add_As <span class="op">=</span> A <span class="op">+</span> s</span></code></pre></div>
+<pre><code>## A =
+## 
+##    1   2   4
+##    5   3   2
+## 
+## B =
+## 
+##    1   3   4
+##    1   1   1
+## 
+## s =  2
+## add_AB =
+## 
+##    2   5   8
+##    6   4   3
+## 
+## sub_AB =
+## 
+##    0  -1   0
+##    4   2   1
+## 
+## mult_As =
+## 
+##     2    4    8
+##    10    6    4
+## 
+## div_As =
+## 
+##    0.50000   1.00000   2.00000
+##    2.50000   1.50000   1.00000
+## 
+## add_As =
+## 
+##    3   4   6
+##    7   5   4</code></pre>
+</div>
+<div id="matrix-vector-multiplication" class="section level2">
+<h2><span class="header-section-number">1.13</span> Matrix-Vector Multiplication</h2>
+<p>We map the column of the vector onto each row of the matrix, multiplying each element and summing the result.</p>
+<p><span class="math inline">\(\begin{bmatrix} a &amp; b \newline c &amp; d \newline e &amp; f \end{bmatrix} *\begin{bmatrix} x \newline y \newline \end{bmatrix} =\begin{bmatrix} a*x + b*y \newline c*x + d*y \newline e*x + f*y\end{bmatrix}\)</span></p>
+<p>The result is a <strong>vector</strong>. The number of <strong>columns</strong> of the matrix must equal the number of <strong>rows</strong> of the vector.</p>
+<p>An <strong>m x n matrix</strong> multiplied by an <strong>n x 1</strong> vector results in an <strong>m x 1 vector</strong>.</p>
+<p>Below is an example of a matrix-vector multiplication. Make sure you understand how the multiplication works. Feel free to try different matrix-vector multiplications.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode octave"><code class="sourceCode octave"><span id="cb5-1"><a href="index.html#cb5-1"></a></span>
+<span id="cb5-2"><a href="index.html#cb5-2"></a><span class="co">% Initialize matrix A </span></span>
+<span id="cb5-3"><a href="index.html#cb5-3"></a>A <span class="op">=</span> [<span class="fl">1</span><span class="op">,</span> <span class="fl">2</span><span class="op">,</span> <span class="fl">3</span><span class="op">;</span> <span class="fl">4</span><span class="op">,</span> <span class="fl">5</span><span class="op">,</span> <span class="fl">6</span><span class="op">;</span><span class="fl">7</span><span class="op">,</span> <span class="fl">8</span><span class="op">,</span> <span class="fl">9</span>] </span>
+<span id="cb5-4"><a href="index.html#cb5-4"></a></span>
+<span id="cb5-5"><a href="index.html#cb5-5"></a><span class="co">% Initialize vector v </span></span>
+<span id="cb5-6"><a href="index.html#cb5-6"></a>v <span class="op">=</span> [<span class="fl">1</span><span class="op">;</span> <span class="fl">1</span><span class="op">;</span> <span class="fl">1</span>] </span>
+<span id="cb5-7"><a href="index.html#cb5-7"></a></span>
+<span id="cb5-8"><a href="index.html#cb5-8"></a><span class="co">% Multiply A * v</span></span>
+<span id="cb5-9"><a href="index.html#cb5-9"></a>Av <span class="op">=</span> A <span class="op">*</span> v</span></code></pre></div>
+<pre><code>## A =
+## 
+##    1   2   3
+##    4   5   6
+##    7   8   9
+## 
+## v =
+## 
+##    1
+##    1
+##    1
+## 
+## Av =
+## 
+##     6
+##    15
+##    24</code></pre>
+</div>
+<div id="matrix-matrix-multiplication" class="section level2">
+<h2><span class="header-section-number">1.14</span> Matrix-Matrix Multiplication</h2>
+<p>We multiply two matrices by breaking it into several vector multiplications and concatenating the result.</p>
+<p><span class="math inline">\(\begin{bmatrix} a &amp; b \newline c &amp; d \newline e &amp; f \end{bmatrix} *\begin{bmatrix} w &amp; x \newline y &amp; z \newline \end{bmatrix} =\begin{bmatrix} a*w + b*y &amp; a*x + b*z \newline c*w + d*y &amp; c*x + d*z \newline e*w + f*y &amp; e*x + f*z\end{bmatrix}\)</span></p>
+<p>An <strong>m x n matrix</strong> multiplied by an <strong>n x o matrix</strong> results in an <strong>m x o</strong> matrix. In the above example, a 3 x 2 matrix times a 2 x 2 matrix resulted in a 3 x 2 matrix.</p>
+<p>To multiply two matrices, the number of <strong>columns</strong> of the first matrix must equal the number of <strong>rows</strong> of the second matrix.</p>
+<p>For example:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode octave"><code class="sourceCode octave"><span id="cb7-1"><a href="index.html#cb7-1"></a></span>
+<span id="cb7-2"><a href="index.html#cb7-2"></a><span class="co">% Initialize a 3 by 2 matrix </span></span>
+<span id="cb7-3"><a href="index.html#cb7-3"></a>A <span class="op">=</span> [<span class="fl">1</span><span class="op">,</span> <span class="fl">2</span><span class="op">;</span> <span class="fl">3</span><span class="op">,</span> <span class="fl">4</span><span class="op">;</span><span class="fl">5</span><span class="op">,</span> <span class="fl">6</span>]</span>
+<span id="cb7-4"><a href="index.html#cb7-4"></a></span>
+<span id="cb7-5"><a href="index.html#cb7-5"></a><span class="co">% Initialize a 2 by 1 matrix </span></span>
+<span id="cb7-6"><a href="index.html#cb7-6"></a>B <span class="op">=</span> [<span class="fl">1</span><span class="op">;</span> <span class="fl">2</span>] </span>
+<span id="cb7-7"><a href="index.html#cb7-7"></a></span>
+<span id="cb7-8"><a href="index.html#cb7-8"></a><span class="co">% We expect a resulting matrix of (3 by 2)*(2 by 1) = (3 by 1) </span></span>
+<span id="cb7-9"><a href="index.html#cb7-9"></a>mult_AB <span class="op">=</span> A<span class="op">*</span>B</span>
+<span id="cb7-10"><a href="index.html#cb7-10"></a></span>
+<span id="cb7-11"><a href="index.html#cb7-11"></a><span class="co">% Make sure you understand why we got that result</span></span></code></pre></div>
+<pre><code>## A =
+## 
+##    1   2
+##    3   4
+##    5   6
+## 
+## B =
+## 
+##    1
+##    2
+## 
+## mult_AB =
+## 
+##     5
+##    11
+##    17</code></pre>
+</div>
+<div id="matrix-multiplication-properties" class="section level2">
+<h2><span class="header-section-number">1.15</span> Matrix Multiplication Properties</h2>
+<ul>
+<li>Matrices are not commutative: <span class="math inline">\(A∗B \neq B∗A\)</span></li>
+<li>Matrices are associative: <span class="math inline">\((A∗B)∗C = A∗(B∗C)\)</span></li>
+</ul>
+<p>The <strong>identity matrix</strong>, when multiplied by any matrix of the same dimensions, results in the original matrix. It’s just like multiplying numbers by 1. The identity matrix simply has 1’s on the diagonal (upper left to lower right diagonal) and 0’s elsewhere.</p>
+<p><span class="math inline">\(\begin{bmatrix} 1 &amp; 0 &amp; 0 \newline 0 &amp; 1 &amp; 0 \newline 0 &amp; 0 &amp; 1 \newline \end{bmatrix}\)</span></p>
+<p>When multiplying the identity matrix after some matrix (A∗I), the square identity matrix’s dimension should match the other matrix’s <strong>columns</strong>. When multiplying the identity matrix before some other matrix (I∗A), the square identity matrix’s dimension should match the other matrix’s <strong>rows</strong>.</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode octave"><code class="sourceCode octave"><span id="cb9-1"><a href="index.html#cb9-1"></a><span class="co">% Initialize random matrices A and B </span></span>
+<span id="cb9-2"><a href="index.html#cb9-2"></a>A <span class="op">=</span> [<span class="fl">1</span><span class="op">,</span><span class="fl">2</span><span class="op">;</span><span class="fl">4</span><span class="op">,</span><span class="fl">5</span>]</span>
+<span id="cb9-3"><a href="index.html#cb9-3"></a>B <span class="op">=</span> [<span class="fl">1</span><span class="op">,</span><span class="fl">1</span><span class="op">;</span><span class="fl">0</span><span class="op">,</span><span class="fl">2</span>]</span>
+<span id="cb9-4"><a href="index.html#cb9-4"></a></span>
+<span id="cb9-5"><a href="index.html#cb9-5"></a><span class="co">% Initialize a 2 by 2 identity matrix</span></span>
+<span id="cb9-6"><a href="index.html#cb9-6"></a><span class="bu">I</span> <span class="op">=</span> <span class="fu">eye</span>(<span class="fl">2</span>)</span>
+<span id="cb9-7"><a href="index.html#cb9-7"></a></span>
+<span id="cb9-8"><a href="index.html#cb9-8"></a><span class="co">% The above notation is the same as I = [1,0;0,1]</span></span>
+<span id="cb9-9"><a href="index.html#cb9-9"></a></span>
+<span id="cb9-10"><a href="index.html#cb9-10"></a><span class="co">% What happens when we multiply I*A ? </span></span>
+<span id="cb9-11"><a href="index.html#cb9-11"></a>IA <span class="op">=</span> <span class="bu">I</span><span class="op">*</span>A </span>
+<span id="cb9-12"><a href="index.html#cb9-12"></a></span>
+<span id="cb9-13"><a href="index.html#cb9-13"></a><span class="co">% How about A*I ? </span></span>
+<span id="cb9-14"><a href="index.html#cb9-14"></a>AI <span class="op">=</span> A<span class="op">*</span><span class="bu">I</span> </span>
+<span id="cb9-15"><a href="index.html#cb9-15"></a></span>
+<span id="cb9-16"><a href="index.html#cb9-16"></a><span class="co">% Compute A*B </span></span>
+<span id="cb9-17"><a href="index.html#cb9-17"></a>AB <span class="op">=</span> A<span class="op">*</span>B </span>
+<span id="cb9-18"><a href="index.html#cb9-18"></a></span>
+<span id="cb9-19"><a href="index.html#cb9-19"></a><span class="co">% Is it equal to B*A? </span></span>
+<span id="cb9-20"><a href="index.html#cb9-20"></a>BA <span class="op">=</span> B<span class="op">*</span>A </span>
+<span id="cb9-21"><a href="index.html#cb9-21"></a></span>
+<span id="cb9-22"><a href="index.html#cb9-22"></a><span class="co">% Note that IA = AI but AB != BA</span></span></code></pre></div>
+<pre><code>## A =
+## 
+##    1   2
+##    4   5
+## 
+## B =
+## 
+##    1   1
+##    0   2
+## 
+## I =
+## 
+## Diagonal Matrix
+## 
+##    1   0
+##    0   1
+## 
+## IA =
+## 
+##    1   2
+##    4   5
+## 
+## AI =
+## 
+##    1   2
+##    4   5
+## 
+## AB =
+## 
+##     1    5
+##     4   14
+## 
+## BA =
+## 
+##     5    7
+##     8   10</code></pre>
+</div>
+<div id="inverse-and-transpose" class="section level2">
+<h2><span class="header-section-number">1.16</span> Inverse and Transpose</h2>
+<p>The <strong>inverse</strong> of a matrix A is denoted <span class="math inline">\(A^{-1}\)</span>. Multiplying by the inverse results in the identity matrix.</p>
+<p>A non square matrix does not have an inverse matrix. We can compute inverses of matrices in octave with the <span class="math inline">\(pinv(A)\)</span> function and in Matlab with the <span class="math inline">\(inv(A)\)</span> function. Matrices that don’t have an inverse are <strong>singular</strong> or <strong>degenerate</strong>.</p>
+<p>The <strong>transposition</strong> of a matrix is like rotating the matrix 90° in clockwise direction and then reversing it. We can compute transposition of matrices in matlab with the transpose(A) function or A’:</p>
+<p><span class="math inline">\(A = \begin{bmatrix} a &amp; b \newline c &amp; d \newline e &amp; f \end{bmatrix}\)</span></p>
+<p><span class="math inline">\(A^T = \begin{bmatrix} a &amp; c &amp; e \newline b &amp; d &amp; f \newline \end{bmatrix}\)</span></p>
+<p>In other words:</p>
+<p><span class="math inline">\(A_{ij} = A^T_{ji}\)</span></p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode octave"><code class="sourceCode octave"><span id="cb11-1"><a href="index.html#cb11-1"></a><span class="co">% Initialize matrix A </span></span>
+<span id="cb11-2"><a href="index.html#cb11-2"></a>A <span class="op">=</span> [<span class="fl">1</span><span class="op">,</span><span class="fl">2</span><span class="op">,</span><span class="fl">0</span><span class="op">;</span><span class="fl">0</span><span class="op">,</span><span class="fl">5</span><span class="op">,</span><span class="fl">6</span><span class="op">;</span><span class="fl">7</span><span class="op">,</span><span class="fl">0</span><span class="op">,</span><span class="fl">9</span>]</span>
+<span id="cb11-3"><a href="index.html#cb11-3"></a></span>
+<span id="cb11-4"><a href="index.html#cb11-4"></a><span class="co">% Transpose A </span></span>
+<span id="cb11-5"><a href="index.html#cb11-5"></a>A_trans <span class="op">=</span> A<span class="op">&#39;</span> </span>
+<span id="cb11-6"><a href="index.html#cb11-6"></a></span>
+<span id="cb11-7"><a href="index.html#cb11-7"></a><span class="co">% Take the inverse of A </span></span>
+<span id="cb11-8"><a href="index.html#cb11-8"></a>A_inv <span class="op">=</span> <span class="fu">inv</span>(A)</span>
+<span id="cb11-9"><a href="index.html#cb11-9"></a></span>
+<span id="cb11-10"><a href="index.html#cb11-10"></a></span>
+<span id="cb11-11"><a href="index.html#cb11-11"></a><span class="co">% What is A^(-1)*A? </span></span>
+<span id="cb11-12"><a href="index.html#cb11-12"></a>A_invA <span class="op">=</span> <span class="fu">inv</span>(A)<span class="op">*</span>A</span></code></pre></div>
+<pre><code>## A =
+## 
+##    1   2   0
+##    0   5   6
+##    7   0   9
+## 
+## A_trans =
+## 
+##    1   0   7
+##    2   5   0
+##    0   6   9
+## 
+## A_inv =
+## 
+##    0.348837  -0.139535   0.093023
+##    0.325581   0.069767  -0.046512
+##   -0.271318   0.108527   0.038760
+## 
+## A_invA =
+## 
+##    1.0000e+00  -8.3267e-17   5.5511e-17
+##    2.7756e-17   1.0000e+00  -8.3267e-17
+##   -3.4694e-17   2.7756e-17   1.0000e+00</code></pre>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+
+<a href="week-2.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["bookdw.pdf", "bookdw.epub"]
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
