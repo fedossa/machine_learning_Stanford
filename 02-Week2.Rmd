@@ -1,0 +1,329 @@
+# Week 2
+## Multiple features
+
+Linear regression with multiple variables is also known as "multivariate linear regression".
+
+We now introduce notation for equations where we can have any number of input variables.
+
+\begin{align*}x_j^{(i)} &= \text{value of feature } j \text{ in the }i^{th}\text{ training example} \newline x^{(i)}& = \text{the input (features) of the }i^{th}\text{ training example} \newline m &= \text{the number of training examples} \newline n &= \text{the number of features} \end{align*}
+
+The multivariable form of the hypothesis function accommodating these multiple features is as follows:
+
+$h_\theta (x) = \theta_0 + \theta_1 x_1 + \theta_2 x_2 + \theta_3 x_3 + \cdots + \theta_n x_n$
+ 
+
+In order to develop intuition about this function, we can think about $\theta_0$ as the basic price of a house, $\theta_1$ as the price per square meter, $\theta_2$ as the price per floor, etc. $x_1$ will be the number of square meters in the house, $x_2$ the number of floors, etc.
+
+
+Using the definition of matrix multiplication, our multivariable hypothesis function can be concisely represented as:
+
+\begin{align*}h_\theta(x) =\begin{bmatrix}\theta_0 \hspace{2em} \theta_1 \hspace{2em} ... \hspace{2em} \theta_n\end{bmatrix}\begin{bmatrix}x_0 \newline x_1 \newline \vdots \newline x_n\end{bmatrix}= \theta^T x\end{align*}
+
+
+This is a vectorization of our hypothesis function for one training example; see the lessons on vectorization to learn more.
+
+
+Remark: Note that for convenience reasons in this course we assume $x_{0}^{(i)} =1 \text{ for } (i\in { 1,\dots, m } )$. This allows us to do matrix operations with theta and x. Hence making the two vectors $'\theta'$ and $x^{(i)}$ match each other element-wise (that is, have the same number of elements: n+1).
+
+
+## Gradient Descent for Multiple Variables
+
+The gradient descent equation itself is generally the same form; we just have to repeat it for our 'n' features:
+
+\begin{align*} & \text{repeat until convergence:} \; \lbrace \newline \; & \theta_0 := \theta_0 - \alpha \frac{1}{m} \sum\limits_{i=1}^{m} (h_\theta(x^{(i)}) - y^{(i)}) \cdot x_0^{(i)}\newline \; & \theta_1 := \theta_1 - \alpha \frac{1}{m} \sum\limits_{i=1}^{m} (h_\theta(x^{(i)}) - y^{(i)}) \cdot x_1^{(i)} \newline \; & \theta_2 := \theta_2 - \alpha \frac{1}{m} \sum\limits_{i=1}^{m} (h_\theta(x^{(i)}) - y^{(i)}) \cdot x_2^{(i)} \newline & \cdots \newline \rbrace \end{align*}
+
+In other words:
+
+\begin{align*}& \text{repeat until convergence:} \; \lbrace \newline \; & \theta_j := \theta_j - \alpha \frac{1}{m} \sum\limits_{i=1}^{m} (h_\theta(x^{(i)}) - y^{(i)}) \cdot x_j^{(i)} \; & \text{for j := 0...n}\newline \rbrace\end{align*}
+
+The following image compares gradient descent with one variable to gradient descent with multiple variables:
+
+![Gradient Descent: One vs Multiple features](Gradient Descent for Multiple Variables graph 1.png)
+
+
+#### Additonal self note
+
+<span style="color:red">
+Refer back to your self note on the one feature gradient descent. Essentially, a more general partial derivative of the cost function is provided here. But the idea of mapping a a feature against the cost function, holding all other features constant, and then adjusting the slop to minimize the cost function applies. 
+Again if you replace $h_\theta$ in the cost function with $\theta_0 + \theta_1*x^1 + ... + \theta_n*x^n$ and do the partial derivative of the cost function with respect to each $\theta$ then you will get the same term as shown above. 
+</span>
+
+
+## Gradient Descent in Practice I - Feature Scaling
+
+We can speed up gradient descent by having each of our input values in roughly the same range. This is because θ will descend quickly on small ranges and slowly on large ranges, and so will oscillate inefficiently down to the optimum when the variables are very uneven.
+
+The way to prevent this is to modify the ranges of our input variables so that they are all roughly the same. Ideally:
+
+$−1 ≤ x_{(i)} ≤ 1$
+
+or
+
+$−0.5 ≤ x_{(i)} ≤ 0.5$
+
+These aren't exact requirements; we are only trying to speed things up. The goal is to get all input variables into roughly one of these ranges, give or take a few.
+
+Two techniques to help with this are feature scaling and mean normalization. Feature scaling involves dividing the input values by the range (i.e. the maximum value minus the minimum value) of the input variable, resulting in a new range of just 1. Mean normalization involves subtracting the average value for an input variable from the values for that input variable resulting in a new average value for the input variable of just zero. To implement both of these techniques, adjust your input values as shown in this formula:
+
+$x_i := \dfrac{x_i - \mu_i}{s_i}$
+ 
+
+Where $\mu_i$ is the average of all the values for feature (i) and $s_i$ is the range of values (max - min), or $s_i$ is the standard deviation.
+
+Note that dividing by the range, or dividing by the standard deviation, give different results. The quizzes in this course use range - the programming exercises use standard deviation.
+
+For example, if $x_i$ represents housing prices with a range of 100 to 2000 and a mean value of 1000, then, $x_i := \dfrac{price-1000}{1900}$.
+
+
+## Gradient Descent in Practice II - Learning Rate
+
+**Debugging gradient descent**. Make a plot with number of iterations on the x-axis. Now plot the cost function, J(θ) over the number of iterations of gradient descent. If J(θ) ever increases, then you probably need to decrease α.
+
+**Automatic convergence test**. Declare convergence if J(θ) decreases by less than E in one iteration, where E is some small value such as $10^{−3}$. However in practice it's difficult to choose this threshold value.
+
+![](Gradient Descent in Practice II - Learning Rate graph1.png)
+
+It has been proven that if learning rate α is sufficiently small, then J(θ) will decrease on every iteration.
+
+![](Gradient Descent in Practice II - Learning Rate graph2.png)
+
+To summarize:
+
+If $\alpha$ is too small: slow convergence.
+
+If $\alpha$ is too large: *the objective function* $J(\theta)$ may not decrease on every iteration and thus may not converge.
+
+
+## Features and Polynomial Regression
+
+
+We can improve our features and the form of our hypothesis function in a couple different ways.
+
+We can **combine** multiple features into one. For example, we can combine $x_1$ and $x_2$ into a new feature $x_3$ by taking $x_1⋅x_2$.
+
+### Polynomial Regression
+Our hypothesis function need not be linear (a straight line) if that does not fit the data well.
+
+We can change the behavior or curve of our hypothesis function by making it a quadratic, cubic or square root function (or any other form).
+
+For example, if our hypothesis function is $h_\theta(x) = \theta_0 + \theta_1 x_1$ then we can create additional features based on $x_1$, to get the quadratic function $h_\theta(x) = \theta_0 + \theta_1 x_1 + \theta_2 x_1^2$ or the cubic function $h_\theta(x) = \theta_0 + \theta_1 x_1 + \theta_2 x_1^2 + \theta_3 x_1^3$
+
+
+In the cubic version, we have created new features $x_2$ and $x_3$ where $x_2 = x_1^2$ and $x_3 = x_1^3$.
+
+To make it a square root function, we could do: $h_\theta(x) = \theta_0 + \theta_1 x_1 + \theta_2 \sqrt{x_1}$
+
+One important thing to keep in mind is, if you choose your features this way then feature scaling becomes very important.
+
+eg. if $x_1$ has range 1 - 1000 then range of $x_1^2$ becomes 1 - 1000000 and that of $x_1^3$ becomes 1 - 1000000000 (i.e. 1 - $10^9$)
+
+#### Additonal self note
+
+<span style="color:red">
+The square root formulation is actually very useful as you usually have feature relations that level out after increasing or decreasing exponentially. 
+</span>
+
+```{r}
+x = seq(1:100); y = sqrt(x); y1 = 1/sqrt(x)
+plot(y~x)
+plot(y1~x)
+```
+
+  
+## Normal Equation
+
+
+Gradient descent gives one way of minimizing J. Let’s discuss a second way of doing so, this time performing the minimization explicitly and without resorting to an iterative algorithm. In the "Normal Equation" method, we will minimize J by explicitly taking its derivatives with respect to the $θ_j’$s, and setting them to zero. This allows us to find the optimum theta without iteration. The normal equation formula is given below:
+
+$\theta = (X^T X)^{-1}X^T y$
+
+
+![*Normal Equation Optimization Example*](Normal Equation graph 1.png)
+
+
+There is no need to do feature scaling with the normal equation.
+
+The following is a comparison of gradient descent and the normal equation:
+
+
++-------------------------------+----------------------------------------------+
+| Gradient Descent              | Normal Equation                              |
++===============================+==============================================+
+|                               | **Normal Equation Advantage**                |
++-------------------------------+----------------------------------------------+
+| Need to choose alpha          | No need to choose alpha                      |
++-------------------------------+----------------------------------------------+
+| Needs many iterations         | No need to iterate                           |
++-------------------------------+----------------------------------------------+
+| **Gradient Descent Advantage**|                                              |
++-------------------------------+----------------------------------------------+
+| $O(kn^2)$                     | $O(n^3)$, need to calculate inverse of $X^TX$|
++-------------------------------+----------------------------------------------+
+| Works well when n is large    | Slow if n is very large                      |
++-------------------------------+----------------------------------------------+
+
+
+With the normal equation, computing the inversion has complexity $\mathcal{O}(n^3)$. So if we have a very large number of features, the normal equation will be slow. In practice, when n exceeds 10,000 it might be a good time to go from a normal solution to an iterative process.
+
+
+## Normal Equation Non-invertibility
+
+When implementing the normal equation in octave we want to use the 'pinv' function rather than 'inv.' The 'pinv' function will give you a value of $\theta$ even if $X^TX$ is not invertible.
+
+If $X^TX$ is **noninvertible**, the common causes might be having :
+
+- Redundant features, where two features are very closely related (i.e. they are linearly dependent)
+- Too many features (e.g. m ≤ n). In this case, delete some features or use "regularization" (to be explained in a later lesson).
+
+Solutions to the above problems include deleting a feature that is linearly dependent with another or deleting one or more features when there are too many features.
+
+** In the econometrics discussion the problem of linearly dependnet explanatory variables make it hard to make a decision as to which of the two variables is having the observed effect on the outcome variable. i.e multicollinearity 
+
+
+## Octave - Basic Operations
+
+
+```{octave, engine.path = octaveExe}
+% percent sign is the comment key for octave
+5 + 6 % elementery operations can be done with -, *, /, ^
+```
+
+```{octave, engine.path = octaveExe}
+1 == 2 % logical operations - evalues to false - it is reprensted with 0
+```
+
+```{octave, engine.path = octaveExe}
+1 ~= 2 % The not equal to sign is thelta equal symble and not bang equal
+```
+
+```{octave, engine.path = octaveExe}
+1 && 0 % The AND logical operator - evaluates to 0
+```
+
+```{octave, engine.path = octaveExe}
+1 || 0 % The OR logicla operator - evalueses to 0
+```
+
+```{octave, engine.path = octaveExe}
+PS1('>> ') % To change the octave symbole to >>
+```
+
+```{octave, engine.path = octaveExe}
+ans = 3; % Assignment is done with = and the ; supress prints out. 
+```
+
+```{octave, engine.path = octaveExe}
+c = (3 >= 1);
+```
+
+```{octave, engine.path = octaveExe}
+% printing out results
+b = 'hi'; 
+b % just to print out b
+```
+
+```{octave, engine.path = octaveExe}
+% for a more complex printing use disp - for display. 
+a = pi; 
+disp(sprintf('2 decimals: %0.2f', a)) % syntax used to print strings. It will print out a with two decimals. the %0.2f is to say substitute a here and provide two decimal points. If you change 2 to 6 then you will get 6 decimal place. 
+```
+
+
+```{octave, engine.path = octaveExe}
+a = pi; 
+format long % sets the defualt print to high decimal palces
+a 
+format short % lower decial place print output
+a
+```
+
+```{octave, engine.path = octaveExe}
+% Matrix
+A = [1 2; 3 4; 5 6] % ; says go to the next line. You can write them on different lines if you want. 
+```
+
+```{octave, engine.path = octaveExe}
+% Vectors
+v = [1 2 3] % row vector
+v = [1; 2; 3] % column vector
+```
+
+```{octave, engine.path = octaveExe}
+% Another way to create vectors
+v = 1:0.1:2 % Start from 1 and increment by 0.1 until you arrive at 2. If you do not pass increment default would be 1
+```
+
+```{octave, engine.path = octaveExe}
+% Other ways to generate matrix
+ones(2, 3) % arguement row and column specification - generates matrix of 1s 
+% can be done for zeros as well. With the ones you can actually create any matrix by multiplying with scalar.
+5 * ones(2, 3)
+```
+
+```{octave, engine.path = octaveExe}
+% random variable matrix
+rand(3,3) % matrix of random variables drawn from 0 to 1 with row and column specification.
+```
+
+```{octave, engine.path = octaveExe}
+% more complex generation.
+w = -6 + sqrt(10)*(randn(1, 10000));
+hist(w, 50) % second arguement sets the bins for the historgram
+```
+
+```{octave, engine.path = octaveExe}
+% identitiy matrix
+eye (3)
+```
+
+```{octave, engine.path = octaveExe}
+% documentation and help with help - does not work on rstudio markdown knitting but works in octave.
+%help rand 
+```
+
+
+## Moving Data Around
+
+```{octave, engine.path = octaveExe}
+% size command returns the dimension of a matrix
+A = [1 2; 3 4; 5 6]
+size(A)
+```
+
+```{octave, engine.path = octaveExe}
+% length command returns the length of a vector - can be applied to matrix then returns the longer dimension. But stick to vector for length and size for matrix. 
+V = [1 2 3 4]
+length(V)
+A = [1 2; 3 4; 5 6]
+length(A)
+```
+
+```{octave, engine.path = octaveExe}
+% Load and find data - current working directory is pwd
+%pwd
+% cd stands for chage directory
+%cd 'C:\Users?Charlie\Desktop'
+%pwd
+% ls lists the directories in the working direcotry 
+%ls
+```
+
+
+```{octave, engine.path = octaveExe}
+% you load data with load
+%load featuresX.dat
+% the who command tells you what variables you have in octave while whos gives you more detail.
+%who 
+%whos
+% clear is a command to use to get rid of an object - clear featureX and check with whos
+% clear with no arguments clears everything
+```
+
+```{octave, engine.path = octaveExe}
+A = [1 2 3 4]
+% You save with save - hello.dat A
+% save hello.dat A
+% load hello.dat
+```
+
+**Some Practical lessons in octave missing and in the exercise file. Figure a way to include them back into this markdown eventually.**
